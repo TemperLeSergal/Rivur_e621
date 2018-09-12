@@ -73,7 +73,7 @@ Before you can build and deploy your workspace, you must ensure that you have pr
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://github.com/TemperLeSergal/Rivur_e621_Downloader/blob/master/Contributing.md) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://github.com/TemperLeSergal/Rivur_e621/blob/CottonRivfur/Contributing.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
 
@@ -83,7 +83,7 @@ We use [SemVer](http://semver.org/) for versioning.
 
 * **Cotton Le Sergal** - *Initial work* - [Rivfur](https://github.com/TemperLeSergal/Rivur_e621_Downloader)
 
-See also the list of [contributors](https://github.com/TemperLeSergal/Rivur_e621_Downloader/blob/master/Contributors.md) who participated in this project.
+See also the list of [contributors](https://github.com/TemperLeSergal/Rivur_e621/blob/CottonRivfur/Contributors.md) who participated in this project.
 
 ## License
 
