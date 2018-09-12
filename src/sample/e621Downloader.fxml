@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="backgroundPage" prefHeight="800.0" prefWidth="1135.0"
+            style="-fx-background-color: linear-gradient(from 15% 15% to 100% 100%, rgb(0,102,102) 0%, rgb(204,0,204) 100%);"
+            stylesheets="@/sample/media/files/css/menu.css" xmlns="http://javafx.com/javafx/9.0.1"
+            fx:controller="sample.modules.Menu">
+    <children>
+        <AnchorPane layoutY="45.0" prefHeight="716.0" prefWidth="262.0"
+                    style="-fx-background-color: rgba(123,0,123,.3);">
+            <children>
+                <AnchorPane prefHeight="114.0" prefWidth="262.0"
+                            style="-fx-background-color: linear-gradient(from 15% 15% to 100% 100%, rgba(123,0,123,.2) 0%, rgba(223,0,223,.3) 100%);">
+                    <children>
+                        <ImageView fitHeight="45.0" fitWidth="41.0" layoutX="20.0" layoutY="10.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@/sample/media/images/profile.png"/>
+                            </image>
+                        </ImageView>
+                        <AnchorPane layoutX="20.0" layoutY="56.0" prefHeight="3.0" prefWidth="225.0"
+                                    style="-fx-background-color: rgba(200,200,200,.3);"/>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="221.0" layoutY="12.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                            <image>
+                                <Image url="@/sample/media/images/appSettings.png"/>
+                            </image>
+                        </ImageView>
+                    </children>
+                </AnchorPane>
+                <AnchorPane layoutX="19.0" layoutY="663.0" prefHeight="3.0" prefWidth="225.0"
+                            style="-fx-background-color: rgba(200,200,200,.3);"/>
+                <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="14.0" layoutY="674.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <image>
+                        <Image url="@/sample/media/images/power.png"/>
+                    </image>
+                </ImageView>
+                <Text fill="WHITE" layoutX="57.0" layoutY="697.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOG OFF">
+                    <font>
+                        <Font size="15.0"/>
+                    </font>
+                </Text>
+                <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="14.0" layoutY="129.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <image>
+                        <Image url="@media/images/e621Download.png"/>
+                    </image>
+                </ImageView>
+                <Text fill="WHITE" layoutX="57.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="e621 Downloader">
+                    <font>
+                        <Font size="15.0"/>
+                    </font>
+                </Text>
+                <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="14.0" layoutY="179.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <image>
+                        <Image url="@/sample/media/images/settings.png"/>
+                    </image>
+                </ImageView>
+                <Text fill="WHITE" layoutX="57.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="Settings">
+                    <font>
+                        <Font size="15.0"/>
+                    </font>
+                </Text>
+                <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="14.0" layoutY="229.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <image>
+                        <Image url="@/sample/media/images/advancedSettings.png"/>
+                    </image>
+                </ImageView>
+                <Text fill="WHITE" layoutX="57.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="Advanced Settings">
+                    <font>
+                        <Font size="15.0"/>
+                    </font>
+                </Text>
+                <AnchorPane layoutY="673.0" onMouseEntered="#animateSelectionIn" onMouseExited="#animateSelectionOut"
+                            prefHeight="35.0" prefWidth="262.0"
+                            style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, rgba(123,0,123,.1) 0%, rgba(255,255,255,.3) 100%); -fx-opacity: 0;">
+                    <children>
+                        <AnchorPane layoutX="257.0" prefHeight="35.0" prefWidth="5.0"
+                                    style="-fx-background-color: rgba(255,255,255,.3);" visible="false"/>
+                    </children>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </AnchorPane>
+                <AnchorPane fx:id="DiscordManagement" layoutY="124.0" onMouseClicked="#selectScene"
+                            onMouseEntered="#animateSelectionIn" onMouseExited="#animateSelectionOut" prefHeight="45.0"
+                            prefWidth="262.0"
+                            style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, rgba(123,0,123,.1) 0%, rgba(255,255,255,.3) 100%); -fx-opacity: 0;">
+                    <children>
+                        <AnchorPane layoutX="257.0" prefHeight="35.0" prefWidth="5.0"
+                                    style="-fx-background-color: rgba(255,255,255,.3);" visible="false"/>
+                    </children>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </AnchorPane>
+                <AnchorPane layoutY="174.0" onMouseEntered="#animateSelectionIn" onMouseExited="#animateSelectionOut"
+                            prefHeight="45.0" prefWidth="262.0"
+                            style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, rgba(123,0,123,.1) 0%, rgba(255,255,255,.3) 100%); -fx-opacity: 0;">
+                    <children>
+                        <AnchorPane layoutX="257.0" prefHeight="35.0" prefWidth="5.0"
+                                    style="-fx-background-color: rgba(255,255,255,.3);" visible="false"/>
+                    </children>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </AnchorPane>
+                <AnchorPane layoutY="224.0" onMouseEntered="#animateSelectionIn" onMouseExited="#animateSelectionOut"
+                            prefHeight="45.0" prefWidth="262.0"
+                            style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, rgba(123,0,123,.1) 0%, rgba(255,255,255,.3) 100%); -fx-opacity: 0;">
+                    <children>
+                        <AnchorPane layoutX="257.0" prefHeight="35.0" prefWidth="5.0"
+                                    style="-fx-background-color: rgba(255,255,255,.3);" visible="false"/>
+                    </children>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </AnchorPane>
+                <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="22.0" layoutY="628.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <image>
+                        <Image url="@/sample/media/images/whiteExclemation.png"/>
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <AnchorPane onMouseDragged="#moveScene" onMousePressed="#getScene" prefHeight="45.0" prefWidth="1203.0"
+                    style="-fx-background-color: rgba(223,0,223,.3);">
+            <children>
+                <ImageView fitHeight="34.0" fitWidth="37.0" layoutX="14.0" layoutY="6.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <image>
+                        <Image url="@/sample/media/images/whiterivfurlogo.png"/>
+                    </image>
+                </ImageView>
+                <Text fill="WHITE" layoutX="48.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="e621 Downloader">
+                    <font>
+                        <Font size="16.0"/>
+                    </font>
+                </Text>
+                <ImageView fx:id="close" fitHeight="30.0" fitWidth="30.0" layoutX="1155.0" layoutY="8.0"
+                           onMouseClicked="#closeApplication" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@/sample/media/images/close.png"/>
+                    </image>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </ImageView>
+                <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="1112.0" layoutY="14.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <image>
+                        <Image url="@/sample/media/images/minimize.png"/>
+                    </image>
+                </ImageView>
+                <AnchorPane fx:id="minimize" layoutX="1112.0" layoutY="8.0" onMouseClicked="#minimizeApplication"
+                            prefHeight="30.0" prefWidth="30.0">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="-1.0" layoutY="760.0" prefHeight="40.0" prefWidth="1203.0"
+                    style="-fx-background-color: rgba(85,85,85,.2);">
+            <children>
+                <Text fill="WHITE" layoutX="14.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="VERSION: 0.0.1A">
+                    <font>
+                        <Font name="Segoe UI" size="14.0"/>
+                    </font>
+                </Text>
+                <Text fill="WHITE" layoutX="990.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="COPYRIGHT © TEMPEDOX 2018">
+                    <font>
+                        <Font name="Segoe UI" size="14.0"/>
+                    </font>
+                </Text>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="rootLayout" layoutX="262.0" layoutY="45.0" prefHeight="716.0" prefWidth="941.0"/>
+        <AnchorPane layoutX="262.0" layoutY="45.0" prefHeight="716.0" prefWidth="941.0">
+            <children>
+                <AnchorPane prefHeight="45.0" prefWidth="941.0" style="-fx-background-color: rgba(25,25,25,.3);"
+                            visible="false">
+                    <children>
+                        <Text layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="Discord Management">
+                            <font>
+                                <Font name="System Bold" size="22.0"/>
+                            </font>
+                            <fill>
+                                <LinearGradient endX="1.0" endY="1.0">
+                                    <stops>
+                                        <Stop color="#00b9a3"/>
+                                        <Stop color="#00b9a3" offset="0.007662835249042145"/>
+                                        <Stop color="#e0009c" offset="1.0"/>
+                                    </stops>
+                                </LinearGradient>
+                            </fill>
+                        </Text>
+                        <AnchorPane layoutX="813.0" prefHeight="45.0" prefWidth="128.0"
+                                    style="-fx-background-color: rgba(225,225,225,.3);">
+                            <children>
+                                <Text fill="WHITE" layoutX="49.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                                      wrappingWidth="30.000004053115845">
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                </Text>
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="45.0" prefWidth="941.0" style="-fx-background-color: rgba(25,25,25,.3);">
+                    <children>
+                        <Text layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Download">
+                            <font>
+                                <Font name="System Bold" size="22.0"/>
+                            </font>
+                            <fill>
+                                <LinearGradient endX="1.0" endY="1.0">
+                                    <stops>
+                                        <Stop color="#00b9a3"/>
+                                        <Stop color="#00b9a3" offset="0.007662835249042145"/>
+                                        <Stop color="#e0009c" offset="1.0"/>
+                                    </stops>
+                                </LinearGradient>
+                            </fill>
+                        </Text>
+                        <AnchorPane layoutX="813.0" prefHeight="45.0" prefWidth="128.0"
+                                    style="-fx-background-color: rgba(225,225,225,.3);">
+                            <children>
+                                <Text fill="WHITE" layoutX="49.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                                      wrappingWidth="30.000004053115845">
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                </Text>
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </AnchorPane>
+                <JFXTextField id="loginPageTextField" layoutX="118.0" layoutY="71.0" prefHeight="25.0" prefWidth="705.0"
+                              stylesheets="@media/files/css/app.css"/>
+                <JFXButton layoutX="164.0" layoutY="136.0"
+                           style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-border-width: 2; -fx-border-color: linear-gradient(from 15% 15% to 100% 100%, rgb(255,0,255) 0%, rgb(0,127,127) 100%);"
+                           text="Search" textFill="WHITE"/>
+                <JFXButton layoutX="692.0" layoutY="136.0"
+                           style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-border-width: 2; -fx-border-color: linear-gradient(from 15% 15% to 100% 100%, rgb(255,0,255) 0%, rgb(0,127,127) 100%);"
+                           text="cancel" textFill="WHITE"/>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

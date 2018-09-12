@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="rootLayout" prefHeight="716.0" prefWidth="941.0"
+            style="-fx-background-color: rgba(100,100,100,.2);" stylesheets="@media/files/css/app.css"
+            xmlns="http://javafx.com/javafx/9.0.1" fx:controller="sample.modules.AdvancedSettings">
+    <children>
+        <AnchorPane prefHeight="45.0" prefWidth="941.0" style="-fx-background-color: rgba(25,25,25,.3);">
+            <children>
+                <Text layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Advanced Settings">
+                    <font>
+                        <Font name="System Bold" size="22.0"/>
+                    </font>
+                    <fill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                            <stops>
+                                <Stop color="#00b9a3"/>
+                                <Stop color="#00b9a3" offset="0.007662835249042145"/>
+                                <Stop color="#e0009c" offset="1.0"/>
+                            </stops>
+                        </LinearGradient>
+                    </fill>
+                </Text>
+                <AnchorPane fx:id="furryHavenInviteButton" layoutX="787.0" prefHeight="45.0" prefWidth="154.0"
+                            style="-fx-background-color: rgba(225,225,225,.3);">
+                    <children>
+                        <JFXButton layoutY="-1.0" onMousePressed="#joinDiscord" prefHeight="45.0" prefWidth="154.0"
+                                   style="-fx-background-color: transparent;" text="Furry Haven" textAlignment="CENTER"
+                                   textFill="WHITE">
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                            <font>
+                                <Font name="System Bold" size="17.0"/>
+                            </font>
+                        </JFXButton>
+                    </children>
+                </AnchorPane>
+                <Text fill="WHITE" layoutX="675.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="Join our discord! "/>
+            </children>
+        </AnchorPane>
+        <Text fill="WHITE" layoutX="54.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Download Restrictions:"/>
+        <JFXComboBox fx:id="downloadRestrictionChoiceBox" focusColor="#7b0580" layoutX="54.0" layoutY="97.0"
+                     prefHeight="25.0" prefWidth="121.0" promptText="Images" stylesheets="@media/files/css/app.css"
+                     unFocusColor="#04a7d0"/>
+        <Text fill="WHITE" layoutX="209.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Limit:"/>
+        <JFXTextField focusColor="#7b0580" layoutX="209.0" layoutY="97.0" promptText="-1"
+                      stylesheets="@media/files/css/app.css" unFocusColor="#04a7d0"/>
+        <ImageView fx:id="helpLimit" fitHeight="16.0" fitWidth="12.0" layoutX="237.0" layoutY="67.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@media/images/questionMark.png"/>
+            </image>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </ImageView>
+        <ImageView fx:id="helpRestrictions" fitHeight="16.0" fitWidth="12.0" layoutX="175.0" layoutY="67.0"
+                   pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@media/images/questionMark.png"/>
+            </image>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </ImageView>
+        <AnchorPane fx:id="helpInfoPane" layoutX="277.0" layoutY="204.0" prefHeight="253.0" prefWidth="396.0"
+                    style="-fx-background-color: rgba(255,255,255,.5);" visible="false">
+            <children>
+                <AnchorPane prefHeight="25.0" prefWidth="396.0" style="-fx-background-color: rgba(104,104,104,.3);">
+                    <children>
+                        <Text fx:id="HelpModalTitle" fill="WHITE" layoutX="167.0" layoutY="17.0" strokeType="OUTSIDE"
+                              strokeWidth="0.0" text="Help Modal" textAlignment="CENTER"/>
+                    </children>
+                </AnchorPane>
+                <JFXButton fx:id="HelpModalCloseButton" layoutX="176.0" layoutY="214.0" text="Close"/>
+                <JFXTextArea fx:id="HelpModalTextArea" editable="false" focusColor="#405aa800" focusTraversable="false"
+                             layoutX="32.0" layoutY="41.0" prefHeight="172.0" prefWidth="334.0"
+                             unFocusColor="#4d4d4d00"/>
+                <AnchorPane prefHeight="213.0" prefWidth="396.0"/>
+            </children>
+        </AnchorPane>
+        <JFXCheckBox checkedColor="#07ddda" layoutX="54.0" layoutY="163.0" text="Add tags to downloaded images metadata"
+                     textFill="WHITE">
+            <unCheckedColor>
+                <LinearGradient endX="1.0" endY="1.0">
+                    <stops>
+                        <Stop color="#d300b0"/>
+                        <Stop color="#0194a1" offset="1.0"/>
+                    </stops>
+                </LinearGradient>
+            </unCheckedColor>
+        </JFXCheckBox>
+        <ImageView fx:id="helpMetadata" fitHeight="16.0" fitWidth="12.0" layoutX="304.0" layoutY="157.0"
+                   pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@media/images/questionMark.png"/>
+            </image>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </ImageView>
+        <JFXCheckBox checkedColor="#07ddda" layoutX="54.0" layoutY="193.0" text="Add artist name to image"
+                     textFill="WHITE">
+            <unCheckedColor>
+                <LinearGradient endX="1.0" endY="1.0">
+                    <stops>
+                        <Stop color="#d300b0"/>
+                        <Stop color="#0194a1" offset="1.0"/>
+                    </stops>
+                </LinearGradient>
+            </unCheckedColor>
+        </JFXCheckBox>
+        <JFXCheckBox checkedColor="#07ddda" layoutX="54.0" layoutY="223.0" text="Add whitelisted tags to image"
+                     textFill="WHITE">
+            <unCheckedColor>
+                <LinearGradient endX="1.0" endY="1.0">
+                    <stops>
+                        <Stop color="#d300b0"/>
+                        <Stop color="#0194a1" offset="1.0"/>
+                    </stops>
+                </LinearGradient>
+            </unCheckedColor>
+        </JFXCheckBox>
+        <AnchorPane layoutY="275.0" prefHeight="3.0" prefWidth="941.0"
+                    style="-fx-background-color: rgba(255,255,255,.5);"/>
+        <AnchorPane layoutY="282.0" prefHeight="3.0" prefWidth="941.0"
+                    style="-fx-background-color: rgba(255,255,255,.5);"/>
+        <Text fill="WHITE" layoutX="54.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Level one priority blacklist and whitelist settings:"/>
+        <ImageView fx:id="helpArtistNameTags" fitHeight="16.0" fitWidth="12.0" layoutX="215.0" layoutY="189.0"
+                   pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@media/images/questionMark.png"/>
+            </image>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </ImageView>
+        <ImageView fx:id="helpWhitelistTagsName" fitHeight="16.0" fitWidth="12.0" layoutX="238.0" layoutY="219.0"
+                   pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@media/images/questionMark.png"/>
+            </image>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </ImageView>
+        <ImageView fx:id="helpPriorityOneBlackAndWhitelist" fitHeight="16.0" fitWidth="12.0" layoutX="308.0"
+                   layoutY="298.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@media/images/questionMark.png"/>
+            </image>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </ImageView>
+        <Text fill="WHITE" layoutX="57.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Black List:">
+            <font>
+                <Font size="15.0"/>
+            </font>
+        </Text>
+        <JFXTextField fx:id="blacklistTagsTextField" alignment="CENTER" focusColor="#7b0580" layoutX="57.0"
+                      layoutY="370.0" prefHeight="25.0" prefWidth="160.0" promptText="cub, scat" styleClass="text-area"
+                      stylesheets="@media/files/css/app.css" unFocusColor="#04a7d0">
+            <font>
+                <Font size="15.0"/>
+            </font>
+        </JFXTextField>
+        <JFXButton fx:id="addToBlacklistButton" layoutX="57.0" layoutY="412.0" onMousePressed="#blackListAdd"
+                   prefHeight="29.0" prefWidth="160.0"
+                   style="-fx-background-color: linear-gradient(from 15% 15% to 100% 100%, rgb(255,0,255) 0%, rgb(0,127,127) 100%); -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-width: 2;"
+                   text="Add" textFill="WHITE">
+            <font>
+                <Font size="15.0"/>
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXButton>
+        <JFXButton fx:id="e621DownloaderSettingsBlackListTagRemoveButton" layoutX="822.0" layoutY="325.0"
+                   onMousePressed="#blackListRem" prefHeight="29.0" prefWidth="78.0"
+                   style="-fx-background-color: linear-gradient(from 15% 15% to 100% 100%, rgb(255,0,255) 0%, rgb(0,127,127) 100%); -fx-background-radius: 15; -fx-background-radius: 15; -fx-border-width: 2;"
+                   text="Remove" textFill="WHITE">
+            <font>
+                <Font size="15.0"/>
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXButton>
+        <Text fill="WHITE" layoutX="538.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Black listed tags:">
+            <font>
+                <Font size="15.0"/>
+            </font>
+        </Text>
+        <Text fx:id="selectedTags" fill="#63e8e8" layoutX="654.0" layoutY="344.0" strokeType="OUTSIDE"
+              strokeWidth="0.0">
+            <font>
+                <Font size="15.0"/>
+            </font>
+        </Text>
+        <JFXListView fx:id="priorityOneBlacklist" layoutX="538.0" layoutY="370.0" onMouseClicked="#updateSelectedTags"
+                     prefHeight="148.0" prefWidth="362.0" styleClass="address" stylesheets="@media/files/css/app.css">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXListView>
+        <Text fill="WHITE" layoutX="57.0" layoutY="536.0" strokeType="OUTSIDE" strokeWidth="0.0" text="White List:">
+            <font>
+                <Font size="15.0"/>
+            </font>
+        </Text>
+        <JFXTextField fx:id="whitelistTagsTextField" alignment="CENTER" focusColor="#7b0580" layoutX="57.0"
+                      layoutY="560.0" prefHeight="25.0" prefWidth="160.0" promptText="cub, scat" styleClass="text-area"
+                      stylesheets="@media/files/css/app.css" unFocusColor="#04a7d0">
+            <font>
+                <Font size="15.0"/>
+            </font>
+        </JFXTextField>
+        <JFXButton fx:id="addToWhitelistButton" layoutX="57.0" layoutY="602.0" onMousePressed="#blackListAdd"
+                   prefHeight="29.0" prefWidth="160.0"
+                   style="-fx-background-color: linear-gradient(from 15% 15% to 100% 100%, rgb(255,0,255) 0%, rgb(0,127,127) 100%); -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-width: 2;"
+                   text="Add" textFill="WHITE">
+            <font>
+                <Font size="15.0"/>
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXButton>
+        <JFXButton fx:id="e621DownloaderSettingsBlackListTagRemoveButton1" layoutX="822.0" layoutY="515.0"
+                   onMousePressed="#blackListRem" prefHeight="29.0" prefWidth="78.0"
+                   style="-fx-background-color: linear-gradient(from 15% 15% to 100% 100%, rgb(255,0,255) 0%, rgb(0,127,127) 100%); -fx-background-radius: 15; -fx-background-radius: 15; -fx-border-width: 2;"
+                   text="Remove" textFill="WHITE">
+            <font>
+                <Font size="15.0"/>
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXButton>
+        <Text fill="WHITE" layoutX="538.0" layoutY="535.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Whitelist listed tags:">
+            <font>
+                <Font size="15.0"/>
+            </font>
+        </Text>
+        <Text fx:id="selectedTags1" fill="#63e8e8" layoutX="654.0" layoutY="534.0" strokeType="OUTSIDE"
+              strokeWidth="0.0">
+            <font>
+                <Font size="15.0"/>
+            </font>
+        </Text>
+        <JFXListView fx:id="priorityOneWhitelist" layoutX="538.0" layoutY="560.0" onMouseClicked="#updateSelectedTags"
+                     prefHeight="148.0" prefWidth="362.0" styleClass="address" stylesheets="@media/files/css/app.css">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXListView>
+    </children>
+</AnchorPane>

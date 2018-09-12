@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0"
+            style="-fx-background-color: linear-gradient(from 15% 15% to 100% 100%, rgb(0,102,102) 0%, rgb(204,0,204) 100%);"
+            stylesheets="@media/files/css/app.css" xmlns="http://javafx.com/javafx/9.0.1"
+            fx:controller="sample.modules.SignIn">
+    <children>
+        <AnchorPane layoutY="760.0" prefHeight="40.0" prefWidth="600.0"
+                    style="-fx-background-color: rgba(85,85,85,.2);">
+            <children>
+                <Text fill="WHITE" layoutX="14.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="VERSION: 0.0.1A">
+                    <font>
+                        <Font name="Segoe UI" size="14.0"/>
+                    </font>
+                </Text>
+                <Text fill="WHITE" layoutX="381.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="COPYRIGHT © TEMPEDOX 2018">
+                    <font>
+                        <Font name="Segoe UI" size="14.0"/>
+                    </font>
+                </Text>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="toRemove" layoutY="50.0" prefHeight="61.0" prefWidth="560.0"
+                    style="-fx-background-color: rgba(217,217,217,.0);">
+            <children>
+                <AnchorPane fx:id="toRemove1" layoutY="26.0" prefHeight="7.0" prefWidth="601.0"
+                            style="-fx-background-color: rgba(217,217,217,.3);"/>
+                <Text fx:id="greetText1" layoutX="107.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      style="-fx-fill: rgb(255,0,255);" text="RIVFUR" textAlignment="CENTER"
+                      wrappingWidth="384.3525390625">
+                    <font>
+                        <Font name="Forte" size="61.0"/>
+                    </font>
+                </Text>
+                <Text fx:id="greetText" fill="#20aabf" layoutX="108.0" layoutY="48.0" strokeType="OUTSIDE"
+                      strokeWidth="0.0" style="-fx-opacity: .9;" text="RIVFUR" textAlignment="CENTER"
+                      wrappingWidth="384.3525390625">
+                    <font>
+                        <Font name="Forte" size="58.0"/>
+                    </font>
+                </Text>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="fadeAnchor" layoutY="111.0" prefHeight="690.0" prefWidth="600.0">
+            <children>
+                <Text fill="WHITE" layoutX="223.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="WARNING!">
+                    <font>
+                        <Font name="Segoe UI" size="28.0"/>
+                    </font>
+                </Text>
+                <JFXButton fx:id="signInButton" layoutX="343.0" layoutY="429.0" onMouseClicked="#signin"
+                           prefHeight="29.0" prefWidth="109.0"
+                           style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-border-width: 2; -fx-border-color: linear-gradient(from 15% 15% to 100% 100%, rgb(255,0,255) 0%, rgb(0,127,127) 100%); -fx-background-color: linear-gradient(from 15% 15% to 100% 100%, rgb(255,0,255) 0%, rgb(0,127,127) 100%);"
+                           text="Proceed" textFill="WHITE">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </JFXButton>
+                <Text fill="WHITE" layoutX="297.0" layoutY="449.0" strokeType="OUTSIDE" strokeWidth="0.0" text="or">
+                    <font>
+                        <Font name="Segoe UI" size="14.0"/>
+                    </font>
+                </Text>
+                <JFXButton fx:id="signUpButton" layoutX="155.0" layoutY="429.0" onMouseClicked="#signup"
+                           prefHeight="29.0" prefWidth="109.0"
+                           style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-border-width: 2; -fx-border-color: linear-gradient(from 15% 15% to 100% 100%, rgb(255,0,255) 0%, rgb(0,127,127) 100%);"
+                           text="Exit" textFill="WHITE">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </JFXButton>
+                <JFXTextArea editable="false" focusColor="#405aa800" layoutX="75.0" layoutY="132.0" prefHeight="261.0"
+                             prefWidth="451.0"
+                             text="The content you are about to view is designed and intended to be veiwed only by adults. There may be images that some viewers may find offensive. If you are under the age of 18, if such material offends you or if it is illegal to view such material in your community, city, state, country, providence, place of living, etc. please exit the app. The following terms and conditions apply to this app. Use of this app will constitute your agreement to the following terms and conditions:&#10;&#10;1.) I am 18 years of age or older.&#10;2.) I accept all responsibility for my own actions.&#10;3.) I agree that I am legally bound to these Terms and Conditions."
+                             unFocusColor="#4d4d4d00">
+                    <font>
+                        <Font size="15.0"/>
+                    </font>
+                </JFXTextArea>
+                <JFXCheckBox checkedColor="#07ddda" layoutX="239.0" layoutY="484.0" prefHeight="18.0" prefWidth="129.0"
+                             text="Remeber my choice" textAlignment="CENTER" textFill="WHITE">
+                    <unCheckedColor>
+                        <LinearGradient endX="1.0" endY="1.0" startX="0.1380952380952381" startY="0.11904761904761904">
+                            <stops>
+                                <Stop color="#d300b0"/>
+                                <Stop color="#d300b0" offset="0.007662835249042145"/>
+                                <Stop color="#0194a1" offset="1.0"/>
+                            </stops>
+                        </LinearGradient>
+                    </unCheckedColor>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </JFXCheckBox>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

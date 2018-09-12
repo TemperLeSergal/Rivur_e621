@@ -1,0 +1,282 @@
+.loginButton:hover {
+    -fx-border-color: aqua;
+    -fx-border-style: none none solid none;
+    -fx-border-width: 0px 0px 1px 0px;
+}
+
+.loginPageTextField {
+    -fx-text-fill: rgba(255, 255, 255, 1);
+    -fx-prompt-text-fill: rgba(255, 255, 255, .6);
+}
+
+.centeredTextArea .scroll-pane .content .text {
+    -fx-text-alignment: center;
+    -fx-text-fill: black;
+    -fx-border-color: transparent;
+    /*-fx-background-color: transparent;*/
+}
+
+.centeredTextArea {
+    -fx-text-fill: black;
+    -fx-border-color: transparent;
+    -fx-background-color: rgba(255, 255, 255, .8);
+    /*-fx-background-color: transparent;*/
+}
+
+.centeredTextArea .text-area {
+    /*-fx-background-color: transparent;*/
+    -fx-border-color: transparent;
+    -fx-background-color: rgba(104, 104, 104, .3);
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .content {
+    -fx-background-color: transparent;
+}
+
+.loginPageTextField2 {
+    -fx-background-color: rgba(104, 104, 104, .3);
+    -fx-text-fill: rgba(255, 255, 255, 1);
+    -fx-prompt-text-fill: rgba(255, 255, 255, .6);
+
+}
+
+.loginPage {
+    -fx-background-color: transparent;
+}
+
+.background {
+    -fx-background-position: center;
+    -fx-background-repeat: none;
+    -fx-background-size: 140%;
+}
+
+.changeLogTxt {
+    -fx-background-color: rgba(104, 104, 104, .3);
+    -fx-text-fill: white;
+    -fx-border-radius: 0px;
+}
+
+.jfx-combo-box .combo-box-popup .list-cell {
+    -fx-background-color: rgba(104, 104, 104, .3);
+}
+
+.jfx-combo-box .label {
+    -fx-text-fill: WHITE;
+}
+
+.jfx-combo-box {
+    -fx-prompt-text-fill: rgba(255, 255, 255, .6);
+}
+
+.combo-box .combo-box-popup .list-cell .label {
+    -fx-text-fill: rgba(255, 255, 255, .6);
+}
+
+.combo-box .combo-box-popup .list-cell:hover > .label {
+    -fx-text-fill: WHITE;
+}
+
+.combo-box .combo-box-popup .list-cell:hover {
+    -fx-background-color: #464646;
+}
+
+.combo-box .combo-box-popup .cell {
+    -fx-text-fill: WHITE;
+}
+
+.changeLogTxt .text-area {
+    -fx-background-color: rgba(104, 104, 104, .3);
+    -fx-border-color: transparent;
+    -fx-border-radius: 0px;
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .content {
+    -fx-background-color: transparent;
+}
+
+.versionText {
+    -fx-border-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-family: Ailerons;
+}
+
+.scroll-pane {
+    -fx-hbar-policy: never;
+    -fx-vbar-policy: never;
+}
+
+.jfx-list-view .list-cell {
+    -fx-background-color: rgba(104, 104, 104, .3);
+    -fx-text-fill: white;
+}
+
+.list-view {
+    -fx-background-color: transparent;
+}
+
+.web-view {
+    -fx-background-color: transparent;
+}
+
+.web-view .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.web-view .scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.web-view .scroll-pane .content {
+    -fx-background-color: transparent;
+}
+
+/*!* The main scrollbar **track** CSS class  *!
+.mylistview .scroll-bar:horizontal .track,
+.mmylistview .scroll-bar:vertical .track{
+    -fx-background-color:transparent;
+    -fx-border-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-border-radius:2em;
+}
+
+!* The increment and decrement button CSS class of scrollbar *!
+.mylistview .scroll-bar:horizontal .increment-button ,
+.mylistview .scroll-bar:horizontal .decrement-button {
+    -fx-background-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-padding:0 0 10 0;
+
+}
+
+!* The increment and decrement button CSS class of scrollbar *!
+
+.mylistview .scroll-bar:vertical .increment-button ,
+.mylistview .scroll-bar:vertical .decrement-button {
+
+    -fx-background-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-padding:0 10 0 0;
+
+}
+
+.mylistview  .scroll-bar .increment-arrow,
+.mylistview  .scroll-bar .decrement-arrow
+{
+    -fx-shape: " ";
+    -fx-padding:0;
+}
+
+!* The main scrollbar **thumb** CSS class which we drag every time (movable) *!
+.mylistview .scroll-bar:horizontal .thumb,
+.mylistview .scroll-bar:vertical .thumb {
+    -fx-background-color:derive(black,90%);
+    -fx-background-insets: 2, 0, 0;
+    -fx-background-radius: 2em;
+
+}
+
+.mylistview .scroll-bar:vertical .track-background {
+    visibility: hidden;
+}
+
+.mylistview .scroll-bar:vertical .track {
+    visibility: hidden;
+}*/
+
+.address .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.address .scroll-bar .increment-button {
+    visibility: hidden;
+}
+
+.address .scroll-bar .decrement-button {
+    visibility: hidden;
+}
+
+.address .scroll-bar:vertical {
+    -fx-background-color: rgba(104, 104, 104, .3);
+}
+
+.address .scroll-bar:vertical .track-background {
+    visibility: hidden;
+}
+
+.address .scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+}
+
+.address .hide-thumb .scroll-bar:vertical .thumb {
+    -fx-background-color: rgba(104, 104, 104, .3);
+    visibility: hidden;
+}
+
+.address .scroll-bar .increment-arrow,
+.address .scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+    -fx-padding: 1;
+}
+
+.text-input {
+    -fx-text-fill: white;
+    -fx-highlight-fill: derive(-fx-control-inner-background, -20%);
+    -fx-highlight-text-fill: -fx-text-inner-color;
+    -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);
+    -fx-cursor: text;
+}
+
+.jfx-slider .thumb {
+    -fx-background-color: linear-gradient(from 15% 15% to 100% 100%, rgb(255, 0, 255) 0%, rgb(0, 127, 127) 100%);
+}
+
+.jfx-slider .slider-value {
+    -fx-fill: white;
+    -fx-stroke: white;
+}
+
+.jfx-slider > .track {
+    -fx-background-color: rgb(255, 0, 255);
+}
+
+.jfx-slider > .colored-track {
+    -fx-background-color: rgb(0, 127, 127);
+}
+
+.jfx-slider > .animated-thumb {
+    -fx-background-color: linear-gradient(from 15% 15% to 100% 100%, rgb(255, 0, 255) 0%, rgb(0, 127, 127) 100%);
+}
+
+.jfx-slider .tick {
+    -fx-text-fill: white;
+    -fx-stroke: white;
+}
+
+.jfx-slider .axis .axis-tick-mark, .jfx-slider .axis .axis-minor-tick-mark, .jfx-slider .axis {
+    -fx-tick-label-fill: white;
+    -fx-stroke: white;
+}
+
+.text-input:focused {
+    -fx-prompt-text-fill: transparent;
+}
+
+.jfx-text-input:focused {
+    -fx-prompt-text-fill: transparent;
+}
