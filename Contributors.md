@@ -1,14 +1,14 @@
-#Only contact me via discord if it is regarding a serious bug/vulnerability, or for suggestions.
+# Only contact me via discord if it is regarding a serious bug/vulnerability, or for suggestions.
 
 ---
 
 
-####User Name:
+#### User Name:
 
->Display Name: Cotton Le Sergal
+> Display Name: Cotton Le Sergal
 
-####Discord Name:
- >Cotton Le Sergal#8270
+#### Discord Name:
+ > Cotton Le Sergal#8270
 - [ ] Owner
 - [ ] Developer
 - [ ] Creator  and Founder
@@ -16,11 +16,11 @@
 ---
 ---
 
-####User Name:
+#### User Name:
 
->Display Name: Bwak
+> Display Name: Bwak
 
-####Discord Name:
+#### Discord Name:
  >Bwak#2572
 - [ ] participated in the development of the application.
 - [ ] Suggested the following features:
@@ -30,12 +30,12 @@
 ---
 ---
 
-####User Name:
+#### User Name:
 
->Display Name: Keleno
+> Display Name: Keleno
 
-####Discord Name:
- >Keleno
+#### Discord Name:
+ > Keleno
 - [ ] participated in the development of the application.
 - [ ] Suggested the following features:
     - Suggested not downloading duplicates
@@ -44,12 +44,12 @@
 ---
 ---
 
-####User Name:
+#### User Name:
 
->Display Name: Loki
+> Display Name: Loki
 
-####Discord Name:
- >—(••÷[SS - Łǿƙɨ ]÷••—
+#### Discord Name:
+ > —(••÷[SS - Łǿƙɨ ]÷••—
 - [ ] participated in the development of the application.
 - [ ] Suggested the following features:
     - What's new splash screen based on whitelisted tags
