@@ -12,12 +12,12 @@ import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import sample.modules.SceneNavigaton.SceneNavigator;
+import sample.modules.sceneNavigation.SceneNavigator;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SignIn {
+public class IntroPage {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;

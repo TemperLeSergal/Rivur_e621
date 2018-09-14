@@ -19,10 +19,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import sample.modules.FileManager.FileManager;
-import sample.modules.JSONManager.userJSONManager;
+import sample.modules.fileManager.FileManager;
+import sample.modules.jsonManager.User;
 
-import java.io.*;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -63,7 +63,7 @@ public class Menu implements Initializable {
 
     private FileManager userDataFile = new FileManager("userData.json");
     private FileManager changeLogFile = new FileManager("changelog.txt");
-    private userJSONManager userData = new userJSONManager("userData.json");
+    private User userData = new User("userData.json");
     private FileManager emailPage = new FileManager("emailPage.html");
     private FileManager imageFolder = new FileManager("SavedImages");
 
@@ -165,30 +165,17 @@ public class Menu implements Initializable {
         }
     }
 
-
-    @FXML
-        // This method is called by the FXMLLoader when initialization is complete
-    void initialize() {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         assert backgroundPage != null : "fx:id=\"backgroundPage\" was not injected: check your FXML file 'menu.fxml'.";
         assert close != null : "fx:id=\"close\" was not injected: check your FXML file 'menu.fxml'.";
         assert minimize != null : "fx:id=\"minimize\" was not injected: check your FXML file 'menu.fxml'.";
         assert rootLayout != null : "fx:id=\"rootLayout\" was not injected: check your FXML file 'menu.fxml'.";
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
         if (userDataFile.isEmpty()) {
-            System.out.println("UserDataFileIsEmpty!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            FileInputStream instream = null;
-            FileOutputStream outstream = null;
-            try (PrintWriter out = new PrintWriter("userData.json")) {
-                out.println("{\"profileSettings\":{\"password\":\"\",\"rememberMe\":true,\"FlistCharacterName\":\"\",\"username\":\"\"},\"discordSettings\":{\"server name\":{\"rank\":0,\"xp\":0,\"useDefE621Blacklist\":true,\"discordBlacklist\":[],\"infractions\":{\"serverName\":{\"serverID\":1222134,\"infractionID\":{}},\"serverName2\":{\"serverID\":1222135,\"infractionID\":{},\"infractionID2\":{}}}}},\"e621Settings\":{\"blacklist\":[\"gore\",\"death\",\"young\",\"torture\",\"ball_busting\",\"female\",\"fat\",\"scat\",\"fart\",\"redrusker\",\"horse\",\"equine\",\"donkey\",\"zebra\",\"mlp\",\"breasts\",\"cub\"],\"useBlacklist\":true,\"allowNSFW\":true,\"score\":50,\"favoriteArtists\":[],\"imageSaveLocation\":\"\"},\"fListSettings\":{\"characters\":[]}}");
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-            try (PrintWriter out = new PrintWriter("JSONTemplate.txt")) {
-                out.println("{\"profileSettings\":{\"password\":\"\",\"rememberMe\":true,\"FlistCharacterName\":\"\",\"username\":\"\"},\"discordSettings\":{\"server name\":{\"rank\":0,\"xp\":0,\"useDefE621Blacklist\":true,\"discordBlacklist\":[],\"infractions\":{\"serverName\":{\"serverID\":1222134,\"infractionID\":{}},\"serverName2\":{\"serverID\":1222135,\"infractionID\":{},\"infractionID2\":{}}}}},\"e621Settings\":{\"blacklist\":[\"gore\",\"death\",\"young\",\"torture\",\"ball_busting\",\"female\",\"fat\",\"scat\",\"fart\",\"redrusker\",\"horse\",\"equine\",\"donkey\",\"zebra\",\"mlp\",\"breasts\",\"cub\"],\"useBlacklist\":true,\"allowNSFW\":true,\"score\":50,\"favoriteArtists\":[],\"imageSaveLocation\":\"\"},\"fListSettings\":{\"characters\":[]}}");
-            } catch (FileNotFoundException e) {
+            System.out.println("EMPTY!!!!!!!!!!!!!!!!!!!!!!");
+            try {
+                userDataTemplateFile.copyFile(userDataFile.getFile());
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }

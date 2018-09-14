@@ -20,7 +20,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("signIn.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("sample/IntroPage.fxml"));
         stage.initStyle(StageStyle.TRANSPARENT);
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);

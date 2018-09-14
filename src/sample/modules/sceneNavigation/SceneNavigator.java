@@ -1,4 +1,4 @@
-package sample.modules.SceneNavigaton;
+package sample.modules.sceneNavigation;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

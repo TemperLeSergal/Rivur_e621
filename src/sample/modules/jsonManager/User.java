@@ -1,10 +1,10 @@
-package sample.modules.JSONManager;
+package sample.modules.jsonManager;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import sample.modules.FileManager.FileManager;
+import sample.modules.fileManager.FileManager;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -124,7 +124,7 @@ public class userJSONManager {
     public void setRememberMe(boolean remember) {
         JSONParser parser = new JSONParser();
         try {
-            userJson = (JSONObject) parser.parse(new FileManager(file).getFileContentsAsString());
+            userJson = (JSONObject) parser.parse(new FileManager(file, false).getFileContentsAsString());
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -136,7 +136,7 @@ public class userJSONManager {
     public void setIsNSFW(boolean remember) {
         JSONParser parser = new JSONParser();
         try {
-            userJson = (JSONObject) parser.parse(new FileManager(file).getFileContentsAsString());
+            userJson = (JSONObject) parser.parse(new FileManager(file, false).getFileContentsAsString());
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -148,7 +148,7 @@ public class userJSONManager {
     public void setIsBlacklist(boolean remember) {
         JSONParser parser = new JSONParser();
         try {
-            userJson = (JSONObject) parser.parse(new FileManager(file).getFileContentsAsString());
+            userJson = (JSONObject) parser.parse(new FileManager(file, false).getFileContentsAsString());
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -186,7 +186,7 @@ public class userJSONManager {
     public void setScore(int num) {
         JSONParser parser = new JSONParser();
         try {
-            userJson = (JSONObject) parser.parse(new FileManager(file).getFileContentsAsString());
+            userJson = (JSONObject) parser.parse(new FileManager(file, false).getFileContentsAsString());
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -198,7 +198,7 @@ public class userJSONManager {
     public void saveFolderLocation(String loc) {
         JSONParser parser = new JSONParser();
         try {
-            userJson = (JSONObject) parser.parse(new FileManager(file).getFileContentsAsString());
+            userJson = (JSONObject) parser.parse(new FileManager(file, false).getFileContentsAsString());
         } catch (ParseException e) {
             e.printStackTrace();
         }

@@ -1,4 +1,4 @@
-package sample.modules.SceneNavigaton;
+package sample.modules.sceneNavigation;
 
 public class NavigationInfo {
     public static final String SPLASH_PAGE = "/sample/SignIn.fxml";

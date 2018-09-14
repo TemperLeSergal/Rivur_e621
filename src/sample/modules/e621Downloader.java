@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
 
 import static sample.modules.webPageManager.WebPageAccess.openWebpage;
 
-public class DiscordManagement implements Initializable {
+public class e621Downloader implements Initializable {
 
     @FXML
     AnchorPane furryHavenInviteButton;

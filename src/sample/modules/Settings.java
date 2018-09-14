@@ -15,9 +15,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
-import sample.modules.DatabaseManager.Database;
-import sample.modules.FileManager.FileManager;
-import sample.modules.JSONManager.userJSONManager;
+import sample.modules.fileManager.FileManager;
+import sample.modules.jsonManager.User;
 
 import java.awt.*;
 import java.io.File;
@@ -76,10 +75,9 @@ public class Settings {
     private String lastKnownJFXTextFieldPromptText = "";
     private double xOffset = 0;
     private double yOffset = 0;
-    private Database database = new Database();
     private FileManager userDataFile = new FileManager("userData.json");
     private FileManager changeLogFile = new FileManager("changelog.txt");
-    private userJSONManager userData = new userJSONManager("userData.json");
+    private User userData = new User("userData.json");
     private FileManager emailPage = new FileManager("emailPage.html");
     private FileManager imageFolder = new FileManager("SavedImages");
     private TreeMap<String, AnchorPane> sceneSwapMap = new TreeMap<>();

@@ -13,7 +13,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../intelijProjects/jars/controlsfx-9.0.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../jars/activation.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -22,18 +22,36 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../intelijProjects/jars/controlsfx-samples-9.0.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../jars/apache-tomcat-util.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../jars/controlsfx-9.0.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../jars/controlsfx-samples-9.0.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$MODULE_DIR$/../../intelijProjects/jars/controlsfx-samples-9.0.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../jars/controlsfx-samples-9.0.0.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../intelijProjects/jars/fxsampler-1.0.10.jar!/" />
+          <root url="jar://$MODULE_DIR$/../jars/engine-webkit.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -42,7 +60,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../intelijProjects/jars/httpasyncclient-4.0.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../jars/fxsampler-1.0.10.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -51,7 +69,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../intelijProjects/jars/httpmime-4.3.6.jar!/" />
+          <root url="jar://$MODULE_DIR$/../jars/gson-2.6.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -60,7 +78,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../intelijProjects/jars/javax.mail.jar!/" />
+          <root url="jar://$MODULE_DIR$/../jars/httpasyncclient-4.0.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -69,7 +87,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../intelijProjects/jars/JDA-3.7.1_419-withDependencies.jar!/" />
+          <root url="jar://$MODULE_DIR$/../jars/jfoenix-9.0.4.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -78,7 +96,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../intelijProjects/jars/jfoenix-9.0.4.jar!/" />
+          <root url="jar://$MODULE_DIR$/../jars/json-simple-1.1.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -87,7 +105,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../intelijProjects/jars/json-20140107.jar!/" />
+          <root url="jar://$MODULE_DIR$/../jars/jsoup-1.11.3.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -96,7 +114,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../intelijProjects/jars/json-simple-1.1.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../jars/mysql-connector-java-8.0.11.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -105,7 +123,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../intelijProjects/jars/jsoup-1.11.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/../jars/servlet-api.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -114,7 +132,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../intelijProjects/jars/mysql-connector-java-8.0.11.jar!/" />
+          <root url="jar://$MODULE_DIR$/../jars/unirest-java-1.4.9.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -123,7 +141,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../intelijProjects/jars/unirest-java-1.4.9.jar!/" />
+          <root url="jar://$MODULE_DIR$/../jars/http/javax.mail.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
