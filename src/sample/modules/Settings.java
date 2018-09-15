@@ -15,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import net.dv8tion.jda.core.entities.User;
 import sample.modules.fileManager.FileManager;
 import sample.modules.jsonManager.User;
 
@@ -31,9 +32,7 @@ import static sample.modules.webPageManager.WebPageAccess.openWebpage;
 
 public class Settings {
 
-    public final String B = "bytes";
-    public final String KB = "kilobytes";
-    public final String MB = "megabytes";
+
     public int score = 50;
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;

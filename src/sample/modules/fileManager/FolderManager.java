@@ -1,4 +1,4 @@
 package sample.modules.fileManager;
 
-public class FileManager {
+public class FolderManager {
 }
