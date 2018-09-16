@@ -7,11 +7,11 @@ public class FileManager {
 
     private File privFile;
 
-    private FileManager(String filePath){
+    public FileManager(String filePath) {
         new FileManager(new File(filePath));
     }
 
-    private FileManager(File file){
+    public FileManager(File file) {
         privFile = file;
         if(this.hasPerms())
             try {

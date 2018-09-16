@@ -15,7 +15,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
-import net.dv8tion.jda.core.entities.User;
 import sample.modules.fileManager.FileManager;
 import sample.modules.jsonManager.User;
 
@@ -25,8 +24,10 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 import static sample.modules.webPageManager.WebPageAccess.openWebpage;
 
@@ -76,7 +77,7 @@ public class Settings {
     private double yOffset = 0;
     private FileManager userDataFile = new FileManager("userData.json");
     private FileManager changeLogFile = new FileManager("changelog.txt");
-    private User userData = new User("userData.json");
+    private User userData = new User(userDataFile);
     private FileManager emailPage = new FileManager("emailPage.html");
     private FileManager imageFolder = new FileManager("SavedImages");
     private TreeMap<String, AnchorPane> sceneSwapMap = new TreeMap<>();
@@ -103,26 +104,27 @@ public class Settings {
         assert paneSelectorPaneE621DownloaderSelectedTabPane11 != null : "fx:id=\"paneSelectorPaneE621DownloaderSelectedTabPane11\" was not injected: check your FXML file 'Settings.fxml'.";
         assert e621DownloaderSettingsBlackListSelectFolderButton != null : "fx:id=\"e621DownloaderSettingsBlackListSelectFolderButton\" was not injected: check your FXML file 'Settings.fxml'.";
         assert e621DownloaderSettingsBlackListOpenFolderButton != null : "fx:id=\"e621DownloaderSettingsBlackListOpenFolderButton\" was not injected: check your FXML file 'Settings.fxml'.";
-        userData.saveFolderLocation(imageFolder.getFile().getPath());
-        String str = userData.fetchInfo("blacklist").replaceAll("\\[", "").replaceAll("]", "").replaceAll("\"", "");
+
+        userData.setValue(User.IMAGE_SAVE_LOCATION, imageFolder.getFile().getPath());
+        String str = userData.fetchUserInfo(User.BLACKLISTED_TAGS).replaceAll("\\[", "").replaceAll("]", "").replaceAll("\"", "");
         e621DownloaderSettingsBlackListTagTextArea.getItems().addAll(Arrays.asList(str.split(",")));
-        File saveFolder = new File(userData.fetchInfo("imageSaveLocation"));
+        File saveFolder = new File(userData.fetchUserInfo(User.IMAGE_SAVE_LOCATION));
         e621DownloaderSettingsFolderLocationTextField.setText(saveFolder.getPath());
-        System.out.println("Will show NSFW content: " + Boolean.parseBoolean(userData.fetchInfo("isNSFW")));
-        System.out.println("Will use Blacklisted tags: " + userData.fetchInfo("isBlacklist"));
-        if (Boolean.parseBoolean(userData.fetchInfo("isNSFW")) && !e621DownloaderSettingsAllowNSFWButton.isArmed()) {
+        System.out.println("Will show NSFW content: " + Boolean.parseBoolean(userData.fetchUserInfo(User.IS_NSFW_ALLOWED)));
+        System.out.println("Will use Blacklisted tags: " + userData.fetchUserInfo(User.IS_BLACKLIST_ALLOWED));
+        if (Boolean.parseBoolean(userData.fetchUserInfo(User.IS_NSFW_ALLOWED)) && !e621DownloaderSettingsAllowNSFWButton.isArmed()) {
             e621DownloaderSettingsAllowNSFWButton.fire();
-        } else if (!Boolean.parseBoolean(userData.fetchInfo("isNSFW")) && e621DownloaderSettingsAllowNSFWButton.isArmed()) {
+        } else if (!Boolean.parseBoolean(userData.fetchUserInfo(User.IS_NSFW_ALLOWED)) && e621DownloaderSettingsAllowNSFWButton.isArmed()) {
             e621DownloaderSettingsAllowNSFWButton.fire();
         }
-        if (Boolean.parseBoolean(userData.fetchInfo("isBlacklist")) && !e621DownloaderSettingsEnableBlackListButton.isArmed()) {
+        if (Boolean.parseBoolean(userData.fetchUserInfo(User.IS_BLACKLIST_ALLOWED)) && !e621DownloaderSettingsEnableBlackListButton.isArmed()) {
             e621DownloaderSettingsEnableBlackListButton.fire();
-        } else if (!Boolean.parseBoolean(userData.fetchInfo("isBlacklist")) && e621DownloaderSettingsEnableBlackListButton.isArmed()) {
+        } else if (!Boolean.parseBoolean(userData.fetchUserInfo(User.IS_BLACKLIST_ALLOWED)) && e621DownloaderSettingsEnableBlackListButton.isArmed()) {
             e621DownloaderSettingsEnableBlackListButton.fire();
         }
 
-        e621DownloaderSettingsScoreSlider.setValue(Double.parseDouble(userData.fetchInfo("Score")));
-        e621DownloaderSettingsScoreText.setText("Score: " + userData.fetchInfo("Score"));
+        e621DownloaderSettingsScoreSlider.setValue(Double.parseDouble(userData.fetchUserInfo(User.SCORE)));
+        e621DownloaderSettingsScoreText.setText("Score: " + userData.fetchUserInfo(User.SCORE));
     }
 
     @FXML
@@ -140,8 +142,12 @@ public class Settings {
         if (e621DownloaderSettingsBlackListTagTextField.getText().isEmpty()) {
             //createdialogue("Blacklist Modification Failed", "Please ensure that the blacklist tag field is not empty.", signupPage);
         } else {
-            userData.addBlacklist(e621DownloaderSettingsBlackListTagTextField.getText());
-            String str = userData.fetchInfo("blacklist").replaceAll("\\[", "").replaceAll("]", "").replaceAll("\"", "");
+            Collection<String> result = Arrays.stream(e621DownloaderSettingsBlackListTagTextField.getText().split("[,|\\s+]"))
+                    .map(String::trim)
+                    .filter(next -> !next.isEmpty())
+                    .collect(Collectors.toList());
+            userData.setValue(User.BLACKLISTED_TAGS, result);
+            String str = userData.fetchUserInfo(User.BLACKLISTED_TAGS).replaceAll("\\[", "").replaceAll("]", "").replaceAll("\"", "");
             ObservableList<String> items = FXCollections.observableArrayList(Arrays.asList(str.split(",")));
             e621DownloaderSettingsBlackListTagTextArea.setItems(items);
             e621DownloaderSettingsBlackListTagTextField.clear();
@@ -154,7 +160,7 @@ public class Settings {
             //createdialogue("Blacklist Modification Failed", "Please ensure that a tag is selected from the list.", signupPage);
         } else {
             userData.remBlacklist(selectedTags.getText());
-            String str = userData.fetchInfo("blacklist").replaceAll("\\[", "").replaceAll("]", "").replaceAll("\"", "");
+            String str = userData.fetchUserInfo(User.BLACKLISTED_TAGS).replaceAll("\\[", "").replaceAll("]", "").replaceAll("\"", "");
             ObservableList<String> items = FXCollections.observableArrayList(Arrays.asList(str.split(",")));
             e621DownloaderSettingsBlackListTagTextArea.setItems(items);
             selectedTags.setText("");
@@ -182,7 +188,7 @@ public class Settings {
         if (Desktop.isDesktopSupported()) {
             d = Desktop.getDesktop();
             try {
-                d.open(new File(userData.fetchInfo("imageSaveLocation")));
+                d.open(new File(userData.fetchUserInfo(User.IMAGE_SAVE_LOCATION)));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -194,16 +200,16 @@ public class Settings {
         Stage stage = (Stage) selectedTags.getScene().getWindow();
         DirectoryChooser chooser = new DirectoryChooser();
         chooser.setTitle("Select A Folder To Save Images");
-        File defaultDirectory = new File(userData.fetchInfo("imageSaveLocation"));
+        File defaultDirectory = new File(userData.fetchUserInfo(User.IMAGE_SAVE_LOCATION));
         chooser.setInitialDirectory(defaultDirectory);
         File selectedDirectory = chooser.showDialog(stage);
-        userData.saveFolderLocation(selectedDirectory.getPath());
-        e621DownloaderSettingsFolderLocationTextField.setText(userData.fetchInfo("imageSaveLocation"));
+        userData.setValue(User.IMAGE_SAVE_LOCATION, selectedDirectory.getPath());
+        e621DownloaderSettingsFolderLocationTextField.setText(userData.fetchUserInfo(User.IMAGE_SAVE_LOCATION));
     }
 
     @FXML
     void updateScore(MouseEvent event) {
-        userData.setScore((int) e621DownloaderSettingsScoreSlider.getValue());
+        userData.setValue(User.SCORE, (int) e621DownloaderSettingsScoreSlider.getValue());
     }
 
     @FXML
@@ -235,22 +241,22 @@ public class Settings {
 
     @FXML
     void updateIsNSFW() {
-        if (Boolean.parseBoolean(userData.fetchInfo("isNSFW"))) {
-            userData.setIsNSFW(false);
+        if (Boolean.parseBoolean(userData.fetchUserInfo(User.IS_NSFW_ALLOWED))) {
+            userData.setValue(User.IS_NSFW_ALLOWED, false);
         } else {
-            userData.setIsNSFW(true);
+            userData.setValue(User.IS_NSFW_ALLOWED, true);
         }
-        System.out.println("Will show NSFW content: " + Boolean.parseBoolean(userData.fetchInfo("isNSFW")));
+        System.out.println("Will show NSFW content: " + Boolean.parseBoolean(userData.fetchUserInfo(User.IS_NSFW_ALLOWED)));
     }
 
     @FXML
     void updateIsBlacklisted() {
-        if (Boolean.parseBoolean(userData.fetchInfo("isBlacklist"))) {
-            userData.setIsBlacklist(false);
+        if (Boolean.parseBoolean(userData.fetchUserInfo(User.IS_BLACKLIST_ALLOWED))) {
+            userData.setValue(User.IS_BLACKLIST_ALLOWED, false);
         } else {
-            userData.setIsBlacklist(true);
+            userData.setValue(User.IS_BLACKLIST_ALLOWED, true);
         }
-        System.out.println("Will use Blacklisted tags: " + userData.fetchInfo("isBlacklist"));
+        System.out.println("Will use Blacklisted tags: " + userData.fetchUserInfo(User.IS_BLACKLIST_ALLOWED));
     }
 
 
