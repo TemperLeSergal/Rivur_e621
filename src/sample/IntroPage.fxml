@@ -5,11 +5,14 @@
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXCheckBox?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
             minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0"
             style="-fx-background-color: linear-gradient(from 15% 15% to 100% 100%, rgb(0,102,102) 0%, rgb(204,0,204) 100%);"
             stylesheets="@media/files/css/app.css" xmlns="http://javafx.com/javafx/9.0.1"
-            fx:controller="sample.modules.SignIn">
+            fx:controller="sample.modules.IntroPage">
     <children>
         <AnchorPane layoutY="760.0" prefHeight="40.0" prefWidth="600.0"
                     style="-fx-background-color: rgba(85,85,85,.2);">

@@ -1,21 +1,16 @@
-package sample.modules;
-
 /**
- * Sample Skeleton for 'splashpage.fxml' Controller Class
+ * Sample Skeleton for 'IntroPage.fxml' Controller Class
  */
 
+package sample.modules;
+
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXToggleButton;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import sample.modules.sceneNavigation.SceneNavigator;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class IntroPage {
 
@@ -40,37 +35,31 @@ public class IntroPage {
     @FXML // fx:id="fadeAnchor"
     private AnchorPane fadeAnchor; // Value injected by FXMLLoader
 
-    @FXML // fx:id="usernameTextField"
-    private JFXTextField usernameTextField; // Value injected by FXMLLoader
-
-    @FXML // fx:id="passwordTextField"
-    private JFXPasswordField passwordTextField; // Value injected by FXMLLoader
-
-    @FXML // fx:id="rememberMeToggleButton"
-    private JFXToggleButton rememberMeToggleButton; // Value injected by FXMLLoader
-
     @FXML // fx:id="signInButton"
     private JFXButton signInButton; // Value injected by FXMLLoader
 
     @FXML // fx:id="signUpButton"
     private JFXButton signUpButton; // Value injected by FXMLLoader
 
-    @FXML // fx:id="forgotPassword"
-    private Text forgotPassword; // Value injected by FXMLLoader
+    @FXML
+    void signin(MouseEvent event) {
+
+    }
 
     @FXML
-        // This method is called by the FXMLLoader when initialization is complete
+    void signup(MouseEvent event) {
+
+    }
+
+    @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-        //rememberMeToggleButton.disarm();
-    }
+        assert toRemove != null : "fx:id=\"toRemove\" was not injected: check your FXML file 'IntroPage.fxml'.";
+        assert toRemove1 != null : "fx:id=\"toRemove1\" was not injected: check your FXML file 'IntroPage.fxml'.";
+        assert greetText1 != null : "fx:id=\"greetText1\" was not injected: check your FXML file 'IntroPage.fxml'.";
+        assert greetText != null : "fx:id=\"greetText\" was not injected: check your FXML file 'IntroPage.fxml'.";
+        assert fadeAnchor != null : "fx:id=\"fadeAnchor\" was not injected: check your FXML file 'IntroPage.fxml'.";
+        assert signInButton != null : "fx:id=\"signInButton\" was not injected: check your FXML file 'IntroPage.fxml'.";
+        assert signUpButton != null : "fx:id=\"signUpButton\" was not injected: check your FXML file 'IntroPage.fxml'.";
 
-    @FXML
-    public void signup(MouseEvent event) {
-        System.exit(0);
-    }
-
-    @FXML
-    public void signin(MouseEvent event) {
-        SceneNavigator.loadScene(event, SceneNavigator.SUB_MAIN_MENU_PAGE, true);
     }
 }

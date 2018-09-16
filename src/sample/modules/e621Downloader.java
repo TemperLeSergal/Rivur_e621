@@ -1,48 +1,57 @@
+/**
+ * Sample Skeleton for 'e621Downloader.fxml' Controller Class
+ */
+
 package sample.modules;
 
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
-
-import java.net.MalformedURLException;
+import com.jfoenix.controls.JFXProgressBar;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 
-import static sample.modules.webPageManager.WebPageAccess.openWebpage;
+public class e621Downloader {
 
-public class e621Downloader implements Initializable {
+    @FXML // ResourceBundle that was given to the FXMLLoader
+    private ResourceBundle resources;
+
+    @FXML // URL location of the FXML file that was given to the FXMLLoader
+    private URL location;
+
+    @FXML // fx:id="rootLayout"
+    private AnchorPane rootLayout; // Value injected by FXMLLoader
+
+    @FXML // fx:id="furryHavenInviteButton"
+    private AnchorPane furryHavenInviteButton; // Value injected by FXMLLoader
+
+    @FXML // fx:id="e621DownloaderImageContainer"
+    private HBox e621DownloaderImageContainer; // Value injected by FXMLLoader
+
+    @FXML // fx:id="e621DownloadingStatusText"
+    private Text e621DownloadingStatusText; // Value injected by FXMLLoader
+
+    @FXML // fx:id="e621DownloadingProgressBar"
+    private JFXProgressBar e621DownloadingProgressBar; // Value injected by FXMLLoader
+
+    @FXML // fx:id="e621DownloadingInfoText"
+    private Text e621DownloadingInfoText; // Value injected by FXMLLoader
 
     @FXML
-    AnchorPane furryHavenInviteButton;
+    void joinDiscord(MouseEvent event) {
 
-    @FXML
-    ImageView buttonGraphic;
-
-    @FXML
-    public void buttonTest() {
-        System.out.println("Button on menu was pushed!");
     }
 
-    @FXML
-    public void joinDiscord(MouseEvent event) {
-        System.out.println("Doing something");
-        try {
-            openWebpage(new URL("https://discord.gg/mKAvNKu"));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-    }
+    @FXML // This method is called by the FXMLLoader when initialization is complete
+    void initialize() {
+        assert rootLayout != null : "fx:id=\"rootLayout\" was not injected: check your FXML file 'e621Downloader.fxml'.";
+        assert furryHavenInviteButton != null : "fx:id=\"furryHavenInviteButton\" was not injected: check your FXML file 'e621Downloader.fxml'.";
+        assert e621DownloaderImageContainer != null : "fx:id=\"e621DownloaderImageContainer\" was not injected: check your FXML file 'e621Downloader.fxml'.";
+        assert e621DownloadingStatusText != null : "fx:id=\"e621DownloadingStatusText\" was not injected: check your FXML file 'e621Downloader.fxml'.";
+        assert e621DownloadingProgressBar != null : "fx:id=\"e621DownloadingProgressBar\" was not injected: check your FXML file 'e621Downloader.fxml'.";
+        assert e621DownloadingInfoText != null : "fx:id=\"e621DownloadingInfoText\" was not injected: check your FXML file 'e621Downloader.fxml'.";
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        Image image = new Image(getClass().getClassLoader().getResourceAsStream("sample/media/images/fhIcon.jpg"));
-        System.out.println(image.getUrl());
-        //buttonGraphic = new ImageView(image);
-        //buttonGraphic.setPreserveRatio(true);
-        BackgroundSize backgroundSize = new BackgroundSize(furryHavenInviteButton.getWidth(), furryHavenInviteButton.getHeight(), false, false, true, false);
-        furryHavenInviteButton.setBackground(new Background(new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize)));
     }
 }
