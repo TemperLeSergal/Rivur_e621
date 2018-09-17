@@ -62,6 +62,7 @@ public class IntroPage {
             System.out.println("User is empty, creating new JSON file.");
             try {
                 new FileManager("JSONTemplate.txt").copyFileContents(userDataFile.getFile());
+                userDataFile.copyFileContents("JSONTemplate.txt");
             } catch (IOException e) {
                 e.printStackTrace();
             }

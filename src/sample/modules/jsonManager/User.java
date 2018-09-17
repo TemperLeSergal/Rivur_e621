@@ -46,7 +46,7 @@ public class User {
     public User(FileManager fm){
         userFileManager = fm;
         defFileSavePath = fm.getDefFilePath();
-        userJsonFile = defFileSavePath + "src\\sample\\media\\files\\json\\user.json";
+        //userJsonFile = defFileSavePath + "src\\sample\\media\\files\\json\\user.json";
     }
 
     public String fetchUserInfo(String key) {

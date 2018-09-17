@@ -132,6 +132,7 @@ public class FileManager {
                 destination.transferFrom(source,0,source.size());
                 System.out.println("Source: " + this.getFile().getPath());
                 System.out.println("Dest: " + fileDest.getPath());
+                System.out.println(destination.transferFrom(source,0,source.size()));
 
             } finally {
                 if(source != null){
