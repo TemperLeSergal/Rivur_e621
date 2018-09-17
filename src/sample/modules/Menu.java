@@ -1,24 +1,16 @@
-/**
- * Sample Skeleton for 'Menu.fxml' Controller Class
+/*
+  Sample Skeleton for 'Menu.fxml' Controller Class
  */
 
 package sample.modules;
 
 import com.jfoenix.controls.JFXTreeView;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class Menu {
-
-    @FXML // ResourceBundle that was given to the FXMLLoader
-    private ResourceBundle resources;
-
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
-    private URL location;
 
     @FXML // fx:id="backgroundPage"
     private AnchorPane backgroundPage; // Value injected by FXMLLoader
