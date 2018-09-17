@@ -8,8 +8,10 @@ public class FileManager {
     private File privFile;
 
     public FileManager(String filePath) {
+        System.out.println("Creating new file.");
         privFile = new File(filePath);
         if(this.hasPerms())
+            System.out.println("File has perms");
             try {
                 //noinspection ResultOfMethodCallIgnored
                 privFile.createNewFile();
@@ -19,8 +21,10 @@ public class FileManager {
     }
 
     public FileManager(File file) {
+        System.out.println("Creating new file.");
         privFile = file;
         if(this.hasPerms())
+            System.out.println("File has perms");
             try {
                 //noinspection ResultOfMethodCallIgnored
                 privFile.createNewFile();
@@ -112,16 +116,22 @@ public class FileManager {
         return new FileManager(fileSource).copyFileContents(fileDest);
     }
 
+    public boolean copyFileContents(String filePathDest) throws IOException {
+        return this.copyFileContents(new File(filePathDest));
+    }
+
     public boolean copyFileContents(File fileDest) throws IOException {
         FileManager fileDest_ = new FileManager(fileDest);
         FileChannel source = null;
         FileChannel destination = null;
-
-        if(fileDest_.hasPerms() && !fileDest_.isEmpty()){
+        System.out.println("murr: " + fileDest_.hasPerms() + ", Burr: " + fileDest_.isEmpty());
+        if (fileDest_.hasPerms() && fileDest_.isEmpty()) {
             try {
                 source = new FileInputStream(this.getFile()).getChannel();
                 destination = new FileOutputStream(fileDest_.getFile()).getChannel();
                 destination.transferFrom(source,0,source.size());
+                System.out.println("Source: " + this.getFile().getPath());
+                System.out.println("Dest: " + fileDest.getPath());
 
             } finally {
                 if(source != null){

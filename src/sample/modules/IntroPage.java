@@ -10,7 +10,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import sample.modules.fileManager.FileManager;
-import sample.modules.fileManager.FileProperties;
 import sample.modules.sceneNavigation.SceneNavigator;
 
 import java.io.IOException;
@@ -38,7 +37,7 @@ public class IntroPage {
     @FXML // fx:id="signUpButton"
     private JFXButton signUpButton; // Value injected by FXMLLoader
 
-    private FileManager userDataFile = new FileManager(FileProperties.directories.JSON + "user.json");
+    private FileManager userDataFile = new FileManager("user.json");
 
     @FXML
     public void signup() {
@@ -62,7 +61,7 @@ public class IntroPage {
         if (userDataFile.isEmpty()) {
             System.out.println("User is empty, creating new JSON file.");
             try {
-                new FileManager(FileProperties.directories.TEXT + "JSONTemplate.txt").copyFileContents(userDataFile.getFile());
+                new FileManager("JSONTemplate.txt").copyFileContents(userDataFile.getFile());
             } catch (IOException e) {
                 e.printStackTrace();
             }
