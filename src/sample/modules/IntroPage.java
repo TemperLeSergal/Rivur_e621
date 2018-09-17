@@ -1,24 +1,17 @@
-/**
- * Sample Skeleton for 'IntroPage.fxml' Controller Class
+/*
+  Sample Skeleton for 'IntroPage.fxml' Controller Class
  */
 
 package sample.modules;
 
 import com.jfoenix.controls.JFXButton;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import sample.modules.sceneNavigation.SceneNavigator;
 
 public class IntroPage {
-
-    @FXML // ResourceBundle that was given to the FXMLLoader
-    private ResourceBundle resources;
-
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
-    private URL location;
 
     @FXML // fx:id="toRemove"
     private AnchorPane toRemove; // Value injected by FXMLLoader
@@ -42,13 +35,13 @@ public class IntroPage {
     private JFXButton signUpButton; // Value injected by FXMLLoader
 
     @FXML
-    void signin(MouseEvent event) {
-
+    public void signup() {
+        System.exit(0);
     }
 
     @FXML
-    void signup(MouseEvent event) {
-
+    public void signin(MouseEvent event) {
+        SceneNavigator.loadScene(event, SceneNavigator.SUB_MAIN_MENU_PAGE, true);
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
