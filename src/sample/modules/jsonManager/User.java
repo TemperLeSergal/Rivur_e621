@@ -97,6 +97,7 @@ public class User {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        saveJsonToFile(userJson.toJSONString());
     }
 
     private Object getKey(String key) {
