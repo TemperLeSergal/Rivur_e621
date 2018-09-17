@@ -90,12 +90,12 @@ public class AdvancedSettings {
     private JFXListView<String> priorityOneWhitelist; // Value injected by FXMLLoader
 
     @FXML
-    void blackListAdd(MouseEvent event) {
+    void blackListAdd() {
 
     }
 
     @FXML
-    void blackListRem(MouseEvent event) {
+    void blackListRem() {
 
     }
 
@@ -110,7 +110,7 @@ public class AdvancedSettings {
     }
 
     @FXML
-    void updateSelectedTags(MouseEvent event) {
+    void updateSelectedTags() {
 
     }
 

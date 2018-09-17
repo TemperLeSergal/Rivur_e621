@@ -15,6 +15,7 @@ import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import sample.modules.fileManager.FileManager;
+import sample.modules.fileManager.FileProperties;
 import sample.modules.jsonManager.User;
 
 import java.awt.*;
@@ -75,7 +76,7 @@ public class Settings {
     @FXML // fx:id="e621DownloaderSettingsEnableBlackListButton"
     private JFXCheckBox e621DownloaderSettingsEnableBlackListButton; // Value injected by FXMLLoader
 
-    private FileManager userDataFile = new FileManager("userData.json");
+    private FileManager userDataFile = new FileManager(FileProperties.directories.JSON + "userData.json");
     private User userData = new User(userDataFile);
     private FileManager imageFolder = new FileManager("SavedImages");
     private JFXTextField lastKnownJFXTextField = null;
@@ -154,7 +155,6 @@ public class Settings {
         if (nodeType.equals("JFXTextField")) {
             lastKnownJFXTextField = (JFXTextField) node;
             lastKnownJFXTextFieldPromptText = lastKnownJFXTextField.getPromptText();
-            JFXTextField text = (JFXTextField) node;
             ((JFXTextField) node).setPromptText("");
         }
     }
@@ -172,7 +172,7 @@ public class Settings {
     }
 
     @FXML
-    void updateIsBlacklisted(MouseEvent event) {
+    void updateIsBlacklisted() {
         if (Boolean.parseBoolean(userData.fetchUserInfo(User.IS_BLACKLIST_ALLOWED))) {
             userData.setValue(User.IS_BLACKLIST_ALLOWED, false);
         } else {
@@ -181,7 +181,7 @@ public class Settings {
     }
 
     @FXML
-    void updateIsNSFW(MouseEvent event) {
+    void updateIsNSFW() {
         if (Boolean.parseBoolean(userData.fetchUserInfo(User.IS_NSFW_ALLOWED))) {
             userData.setValue(User.IS_NSFW_ALLOWED, false);
         } else {
@@ -190,18 +190,17 @@ public class Settings {
     }
 
     @FXML
-    void updateScore(MouseEvent event) {
+    void updateScore() {
         userData.setValue(User.SCORE, (int) e621DownloaderSettingsScoreSlider.getValue());
     }
 
     @FXML
-    void updateScoreDrag(MouseEvent event) {
+    void updateScoreDrag() {
         e621DownloaderSettingsScoreText.setText("Score: " + String.valueOf((int) e621DownloaderSettingsScoreSlider.getValue()));
     }
 
     @FXML
-    void updateSelectedTags(MouseEvent event) {
-        ObservableList<String> items = e621DownloaderSettingsBlackListTagTextArea.getSelectionModel().getSelectedItems();
+    void updateSelectedTags() {
         selectedTags.setText(e621DownloaderSettingsBlackListTagTextArea.getSelectionModel().getSelectedItems().get(0));
     }
 
