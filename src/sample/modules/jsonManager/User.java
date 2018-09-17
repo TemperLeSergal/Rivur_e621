@@ -69,21 +69,31 @@ public class User {
     }
 
     public void setValue(String key, Object value) {
-        Object Key;
         try {
             userJson = (JSONObject) parser.parse(userFileManager.readFromFile(FileProperties.string.STRING));
-            Key = getKey(key);
-            if (value instanceof Collection) {
-                JSONArray edit = (JSONArray) Key;
-                edit.addAll((Collection) value);
-            } else if (value instanceof String) {
-                JSONObject edit = (JSONObject) Key;
-                edit.put(key, value);
-            } else {
-                JSONObject edit = (JSONObject) Key;
-                edit.put(key, value);
-            }
 
+            switch (userMap.get(key)){
+                case JSON_E621_SETTINGS: {
+                    JSONObject object = (JSONObject) userJson.get(JSON_E621_SETTINGS);
+                    if (value instanceof Collection){
+                        JSONArray list = (JSONArray) object.get(key);
+                        list.addAll((Collection) value);
+                    }else{
+                        object.put(key,value);
+                    }
+                }
+                break;
+                case JSON_PROFILE_SETTINGS: {
+                    JSONObject object = (JSONObject) userJson.get(JSON_PROFILE_SETTINGS);
+                    if (value instanceof Collection){
+                        JSONArray list = (JSONArray) object.get(key);
+                        list.addAll((Collection) value);
+                    }else{
+                        object.put(key,value);
+                    }
+                }
+                break;
+            }
         } catch (ParseException e) {
             e.printStackTrace();
         }
