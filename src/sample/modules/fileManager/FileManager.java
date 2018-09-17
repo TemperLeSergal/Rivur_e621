@@ -111,7 +111,7 @@ public class FileManager {
         if(fileDest_.hasPerms() && !fileDest_.isEmpty()){
             try {
                 source = new FileInputStream(this.getFile()).getChannel();
-                destination = new FileInputStream(fileDest_.getFile()).getChannel();
+                destination = new FileOutputStream(fileDest_.getFile()).getChannel();
                 destination.transferFrom(source,0,source.size());
 
             } finally {
