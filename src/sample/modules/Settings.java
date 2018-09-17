@@ -8,12 +8,18 @@ import com.jfoenix.controls.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Stage;
 import sample.modules.fileManager.FileManager;
 import sample.modules.jsonManager.User;
 
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
@@ -72,9 +78,11 @@ public class Settings {
     private FileManager userDataFile = new FileManager("userData.json");
     private User userData = new User(userDataFile);
     private FileManager imageFolder = new FileManager("SavedImages");
+    private JFXTextField lastKnownJFXTextField = null;
+    private String lastKnownJFXTextFieldPromptText = "";
 
     @FXML
-    void blackListAdd(MouseEvent event) {
+    void blackListAdd() {
         if (!e621DownloaderSettingsBlackListTagTextField.getText().isEmpty()) {
             Collection<String> result = Arrays.stream(e621DownloaderSettingsBlackListTagTextField.getText().split("[,|\\s+]"))
                     .map(String::trim)
@@ -89,13 +97,28 @@ public class Settings {
     }
 
     @FXML
-    void blackListRem(MouseEvent event) {
-
+    void blackListRem() {
+        if (!selectedTags.getText().isEmpty()) {
+            userData.remBlacklist(selectedTags.getText());
+            String str = userData.fetchUserInfo(User.BLACKLISTED_TAGS).replaceAll("\\[", "").replaceAll("]", "").replaceAll("\"", "");
+            ObservableList<String> items = FXCollections.observableArrayList(Arrays.asList(str.split(",")));
+            e621DownloaderSettingsBlackListTagTextArea.setItems(items);
+            selectedTags.setText("");
+        }//TODO add else statement preventing empty fields
     }
 
     @FXML
     void clearSelectedTags(MouseEvent event) {
+        try {
+            if (selectedTags.getText() != null) {
+                Node node = (Node) event.getSource();
+                if (!node.getTypeSelector().equals("JFXButton")) {
+                    selectedTags.setText("");
+                }
+            }
+        } catch (NullPointerException ignored) {
 
+        }
     }
 
     @FXML
@@ -108,43 +131,78 @@ public class Settings {
     }
 
     @FXML
-    void openFolderAtLoc(MouseEvent event) {
-
+    void openFolderAtLoc() {
+        Desktop d;
+        if (Desktop.isDesktopSupported()) {
+            d = Desktop.getDesktop();
+            try {
+                d.open(new File(userData.fetchUserInfo(User.IMAGE_SAVE_LOCATION)));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML
     void removePromptTextOnClick(MouseEvent event) {
-
+        if (!lastKnownJFXTextFieldPromptText.isEmpty()) {
+            lastKnownJFXTextField.setPromptText(lastKnownJFXTextFieldPromptText);
+        }
+        Node node = (Node) event.getSource();
+        String nodeType = node.getTypeSelector();
+        System.out.println(nodeType);
+        if (nodeType.equals("JFXTextField")) {
+            lastKnownJFXTextField = (JFXTextField) node;
+            lastKnownJFXTextFieldPromptText = lastKnownJFXTextField.getPromptText();
+            JFXTextField text = (JFXTextField) node;
+            ((JFXTextField) node).setPromptText("");
+        }
     }
 
     @FXML
-    void saveFolderLocation(MouseEvent event) {
-
+    void saveFolderLocation() {
+        Stage stage = (Stage) selectedTags.getScene().getWindow();
+        DirectoryChooser chooser = new DirectoryChooser();
+        chooser.setTitle("Select A Folder To Save Images");
+        File defaultDirectory = new File(userData.fetchUserInfo(User.IMAGE_SAVE_LOCATION));
+        chooser.setInitialDirectory(defaultDirectory);
+        File selectedDirectory = chooser.showDialog(stage);
+        userData.setValue(User.IMAGE_SAVE_LOCATION, selectedDirectory.getPath());
+        e621DownloaderSettingsFolderLocationTextField.setText(userData.fetchUserInfo(User.IMAGE_SAVE_LOCATION));
     }
 
     @FXML
     void updateIsBlacklisted(MouseEvent event) {
-
+        if (Boolean.parseBoolean(userData.fetchUserInfo(User.IS_BLACKLIST_ALLOWED))) {
+            userData.setValue(User.IS_BLACKLIST_ALLOWED, false);
+        } else {
+            userData.setValue(User.IS_BLACKLIST_ALLOWED, true);
+        }
     }
 
     @FXML
     void updateIsNSFW(MouseEvent event) {
-
+        if (Boolean.parseBoolean(userData.fetchUserInfo(User.IS_NSFW_ALLOWED))) {
+            userData.setValue(User.IS_NSFW_ALLOWED, false);
+        } else {
+            userData.setValue(User.IS_NSFW_ALLOWED, true);
+        }
     }
 
     @FXML
     void updateScore(MouseEvent event) {
-
+        userData.setValue(User.SCORE, (int) e621DownloaderSettingsScoreSlider.getValue());
     }
 
     @FXML
     void updateScoreDrag(MouseEvent event) {
-
+        e621DownloaderSettingsScoreText.setText("Score: " + String.valueOf((int) e621DownloaderSettingsScoreSlider.getValue()));
     }
 
     @FXML
     void updateSelectedTags(MouseEvent event) {
-
+        ObservableList<String> items = e621DownloaderSettingsBlackListTagTextArea.getSelectionModel().getSelectedItems();
+        selectedTags.setText(e621DownloaderSettingsBlackListTagTextArea.getSelectionModel().getSelectedItems().get(0));
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -164,6 +222,23 @@ public class Settings {
         assert e621DownloaderSettingsBlackListOpenFolderButton != null : "fx:id=\"e621DownloaderSettingsBlackListOpenFolderButton\" was not injected: check your FXML file 'Settings.fxml'.";
         assert e621DownloaderSettingsAllowNSFWButton != null : "fx:id=\"e621DownloaderSettingsAllowNSFWButton\" was not injected: check your FXML file 'Settings.fxml'.";
         assert e621DownloaderSettingsEnableBlackListButton != null : "fx:id=\"e621DownloaderSettingsEnableBlackListButton\" was not injected: check your FXML file 'Settings.fxml'.";
+        userData.setValue(User.IMAGE_SAVE_LOCATION, imageFolder.getFile().getPath());
+        String str = userData.fetchUserInfo(User.BLACKLISTED_TAGS).replaceAll("\\[", "").replaceAll("]", "").replaceAll("\"", "");
+        e621DownloaderSettingsBlackListTagTextArea.getItems().addAll(Arrays.asList(str.split(",")));
+        File saveFolder = new File(userData.fetchUserInfo(User.IMAGE_SAVE_LOCATION));
+        e621DownloaderSettingsFolderLocationTextField.setText(saveFolder.getPath());
+        if (Boolean.parseBoolean(userData.fetchUserInfo(User.IS_NSFW_ALLOWED)) && !e621DownloaderSettingsAllowNSFWButton.isArmed()) {
+            e621DownloaderSettingsAllowNSFWButton.fire();
+        } else if (!Boolean.parseBoolean(userData.fetchUserInfo(User.IS_NSFW_ALLOWED)) && e621DownloaderSettingsAllowNSFWButton.isArmed()) {
+            e621DownloaderSettingsAllowNSFWButton.fire();
+        }
+        if (Boolean.parseBoolean(userData.fetchUserInfo(User.IS_BLACKLIST_ALLOWED)) && !e621DownloaderSettingsEnableBlackListButton.isArmed()) {
+            e621DownloaderSettingsEnableBlackListButton.fire();
+        } else if (!Boolean.parseBoolean(userData.fetchUserInfo(User.IS_BLACKLIST_ALLOWED)) && e621DownloaderSettingsEnableBlackListButton.isArmed()) {
+            e621DownloaderSettingsEnableBlackListButton.fire();
+        }
 
+        e621DownloaderSettingsScoreSlider.setValue(Double.parseDouble(userData.fetchUserInfo(User.SCORE)));
+        e621DownloaderSettingsScoreText.setText("Score: " + userData.fetchUserInfo(User.SCORE));
     }
 }
