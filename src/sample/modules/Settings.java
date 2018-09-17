@@ -18,9 +18,6 @@ import javafx.scene.text.Text;
 
 public class Settings {
 
-    @FXML // ResourceBundle that was given to the FXMLLoader
-    private ResourceBundle resources;
-
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
 
@@ -34,11 +31,11 @@ public class Settings {
     private AnchorPane e621DownloaderSettingsPagePane; // Value injected by FXMLLoader
 
     @FXML // fx:id="e621DownloaderSettingsScoreSlider"
-    private JFXSlider e621DownloaderSettingsScoreSlider; // Value injected by FXMLLoader
+    private JFwnloaderSettingsScoreSlider; // Value injected by FXMLLoader
 
     @FXML // fx:id="e621DownloaderSettingsScoreText"
     private Text e621DownloaderSettingsScoreText; // Value injected by FXMLLoader
-
+    XSlider e621Do
     @FXML // fx:id="e621DownloaderSettingsFolderLocationTextField"
     private JFXTextField e621DownloaderSettingsFolderLocationTextField; // Value injected by FXMLLoader
 

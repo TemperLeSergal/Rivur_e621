@@ -8,7 +8,14 @@ public class FileManager {
     private File privFile;
 
     public FileManager(String filePath) {
-        new FileManager(new File(filePath));
+        privFile = new File(filePath);
+        if(this.hasPerms())
+            try {
+                //noinspection ResultOfMethodCallIgnored
+                privFile.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
     }
 
     public FileManager(File file) {
