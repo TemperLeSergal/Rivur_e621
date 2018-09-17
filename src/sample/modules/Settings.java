@@ -15,7 +15,6 @@ import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import sample.modules.fileManager.FileManager;
-import sample.modules.fileManager.FileProperties;
 import sample.modules.jsonManager.User;
 
 import java.awt.*;
@@ -76,7 +75,7 @@ public class Settings {
     @FXML // fx:id="e621DownloaderSettingsEnableBlackListButton"
     private JFXCheckBox e621DownloaderSettingsEnableBlackListButton; // Value injected by FXMLLoader
 
-    private FileManager userDataFile = new FileManager(FileProperties.directories.JSON + "user.json");
+    private FileManager userDataFile = new FileManager("user.json");
     private User userData = new User(userDataFile);
     private FileManager imageFolder = new FileManager("SavedImages");
     private JFXTextField lastKnownJFXTextField = null;
