@@ -27,10 +27,10 @@ public class Menu {
     private AnchorPane backgroundPage; // Value injected by FXMLLoader
 
     @FXML // fx:id="DiscordManagement"
-    private AnchorPane DiscordManagement; // Value injected by FXMLLoader
+    private AnchorPane e621Downloader; // Value injected by FXMLLoader
 
     @FXML // fx:id="DiscordManagementTab"
-    private AnchorPane DiscordManagementTab; // Value injected by FXMLLoader
+    private AnchorPane e621DownloaderTab; // Value injected by FXMLLoader
 
     @FXML // fx:id="Settings"
     private AnchorPane Settings; // Value injected by FXMLLoader
@@ -149,8 +149,8 @@ public class Menu {
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert backgroundPage != null : "fx:id=\"backgroundPage\" was not injected: check your FXML file 'Menu.fxml'.";
-        assert DiscordManagement != null : "fx:id=\"DiscordManagement\" was not injected: check your FXML file 'Menu.fxml'.";
-        assert DiscordManagementTab != null : "fx:id=\"DiscordManagementTab\" was not injected: check your FXML file 'Menu.fxml'.";
+        assert e621Downloader != null : "fx:id=\"DiscordManagement\" was not injected: check your FXML file 'Menu.fxml'.";
+        assert e621DownloaderTab != null : "fx:id=\"DiscordManagementTab\" was not injected: check your FXML file 'Menu.fxml'.";
         assert Settings != null : "fx:id=\"Settings\" was not injected: check your FXML file 'Menu.fxml'.";
         assert SettingsTab != null : "fx:id=\"SettingsTab\" was not injected: check your FXML file 'Menu.fxml'.";
         assert AdvancedSettings != null : "fx:id=\"AdvancedSettings\" was not injected: check your FXML file 'Menu.fxml'.";
