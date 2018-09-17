@@ -38,7 +38,7 @@ public class IntroPage {
     @FXML // fx:id="signUpButton"
     private JFXButton signUpButton; // Value injected by FXMLLoader
 
-    private FileManager userDataFile = new FileManager(FileProperties.directories.JSON + "userData.json");
+    private FileManager userDataFile = new FileManager(FileProperties.directories.JSON + "user.json");
 
     @FXML
     public void signup() {

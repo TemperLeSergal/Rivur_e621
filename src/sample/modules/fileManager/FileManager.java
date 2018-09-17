@@ -86,7 +86,9 @@ public class FileManager {
             }
         }
         try {
-            fr = new FileReader(this.getFile());
+            System.out.println("this.getFile = " + this.getFile());
+            System.out.println("privFile = " + privFile);
+            fr = new FileReader(privFile);
             br = new BufferedReader(fr);
             while ((line = br.readLine()) != null){
                 sb.append(line + extension);

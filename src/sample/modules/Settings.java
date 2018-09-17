@@ -76,7 +76,7 @@ public class Settings {
     @FXML // fx:id="e621DownloaderSettingsEnableBlackListButton"
     private JFXCheckBox e621DownloaderSettingsEnableBlackListButton; // Value injected by FXMLLoader
 
-    private FileManager userDataFile = new FileManager(FileProperties.directories.JSON + "userData.json");
+    private FileManager userDataFile = new FileManager(FileProperties.directories.JSON + "user.json");
     private User userData = new User(userDataFile);
     private FileManager imageFolder = new FileManager("SavedImages");
     private JFXTextField lastKnownJFXTextField = null;

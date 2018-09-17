@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.net.InetAddress;
+import java.util.Objects;
 
 public class Main extends Application {
 
@@ -20,7 +21,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("sample/IntroPage.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("sample/IntroPage.fxml")));
         stage.initStyle(StageStyle.TRANSPARENT);
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);

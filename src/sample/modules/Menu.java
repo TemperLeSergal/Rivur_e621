@@ -59,7 +59,7 @@ public class Menu {
     private double xOffset = 0;
     private double yOffset = 0;
     //TODO Uncomment this when ready
-    //private FileManager userDataFile = new FileManager(FileProperties.directories.JSON + "userData.json");
+    //private FileManager userDataFile = new FileManager(FileProperties.directories.JSON + "user.json");
     //private FileManager changeLogFile = new FileManager(FileProperties.directories.TEXT + "changelog.txt");
     //private User userData = new User(userDataFile);
     //private FileManager imageFolder = new FileManager("SavedImages");
