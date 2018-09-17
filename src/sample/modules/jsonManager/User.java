@@ -60,10 +60,10 @@ public class User {
         object = getKey(key);
         if (object instanceof JSONArray) {
             returnable = object.toString();
-        } else if (object instanceof Boolean) {
-            returnable = String.valueOf(object);
-        } else {
+        } else if (object instanceof String) {
             returnable = (String) object;
+        }else {
+            returnable = String.valueOf(object);
         }
         return returnable;
     }
