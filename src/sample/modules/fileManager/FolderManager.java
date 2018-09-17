@@ -7,20 +7,12 @@ public class FolderManager {
     private File privFolder = null;
     public FolderManager(String filePath) {
         privFolder = new File(filePath);
-        try {
-            privFolder.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        privFolder.mkdir();
     }
 
     public FolderManager(File file) {
         privFolder = file;
-            try {
-                //noinspection ResultOfMethodCallIgnored
-                privFolder.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        //noinspection ResultOfMethodCallIgnored
+        privFolder.mkdir();
     }
 }
