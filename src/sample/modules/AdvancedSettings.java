@@ -1,29 +1,24 @@
-/**
- * Sample Skeleton for 'AdvancedSettings.fxml' Controller Class
+/*
+  Sample Skeleton for 'AdvancedSettings.fxml' Controller Class
  */
 
 package sample.modules;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTextField;
-import java.net.URL;
-import java.util.ResourceBundle;
+import com.jfoenix.controls.*;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.util.StringConverter;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import static sample.modules.webPageManager.WebPageAccess.openWebpage;
 
 public class AdvancedSettings {
-
-    @FXML // ResourceBundle that was given to the FXMLLoader
-    private ResourceBundle resources;
-
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
-    private URL location;
 
     @FXML // fx:id="rootLayout"
     private AnchorPane rootLayout; // Value injected by FXMLLoader
@@ -32,7 +27,7 @@ public class AdvancedSettings {
     private AnchorPane furryHavenInviteButton; // Value injected by FXMLLoader
 
     @FXML // fx:id="downloadRestrictionChoiceBox"
-    private JFXComboBox<?> downloadRestrictionChoiceBox; // Value injected by FXMLLoader
+    private JFXComboBox<Label> downloadRestrictionChoiceBox; // Value injected by FXMLLoader
 
     @FXML // fx:id="helpLimit"
     private ImageView helpLimit; // Value injected by FXMLLoader
@@ -77,7 +72,7 @@ public class AdvancedSettings {
     private Text selectedTags; // Value injected by FXMLLoader
 
     @FXML // fx:id="priorityOneBlacklist"
-    private JFXListView<?> priorityOneBlacklist; // Value injected by FXMLLoader
+    private JFXListView<String> priorityOneBlacklist; // Value injected by FXMLLoader
 
     @FXML // fx:id="whitelistTagsTextField"
     private JFXTextField whitelistTagsTextField; // Value injected by FXMLLoader
@@ -92,7 +87,7 @@ public class AdvancedSettings {
     private Text selectedTags1; // Value injected by FXMLLoader
 
     @FXML // fx:id="priorityOneWhitelist"
-    private JFXListView<?> priorityOneWhitelist; // Value injected by FXMLLoader
+    private JFXListView<String> priorityOneWhitelist; // Value injected by FXMLLoader
 
     @FXML
     void blackListAdd(MouseEvent event) {
@@ -105,8 +100,13 @@ public class AdvancedSettings {
     }
 
     @FXML
-    void joinDiscord(MouseEvent event) {
-
+    public void joinDiscord() {
+        System.out.println("Doing something");
+        try {
+            openWebpage(new URL("https://discord.gg/mKAvNKu"));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -139,6 +139,21 @@ public class AdvancedSettings {
         assert e621DownloaderSettingsBlackListTagRemoveButton1 != null : "fx:id=\"e621DownloaderSettingsBlackListTagRemoveButton1\" was not injected: check your FXML file 'AdvancedSettings.fxml'.";
         assert selectedTags1 != null : "fx:id=\"selectedTags1\" was not injected: check your FXML file 'AdvancedSettings.fxml'.";
         assert priorityOneWhitelist != null : "fx:id=\"priorityOneWhitelist\" was not injected: check your FXML file 'AdvancedSettings.fxml'.";
+        downloadRestrictionChoiceBox.setPromptText("images");
+        downloadRestrictionChoiceBox.getItems().add(new Label("Images"));
+        downloadRestrictionChoiceBox.getItems().add(new Label("pages"));
+        downloadRestrictionChoiceBox.getItems().add(new Label("image size"));
+        downloadRestrictionChoiceBox.setPromptText("Select restriction");
+        downloadRestrictionChoiceBox.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(Label object) {
+                return object == null ? "" : object.getText();
+            }
 
+            @Override
+            public Label fromString(String string) {
+                return new Label(string);
+            }
+        });
     }
 }

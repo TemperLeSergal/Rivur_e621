@@ -1,25 +1,21 @@
-/**
- * Sample Skeleton for 'e621Downloader.fxml' Controller Class
+/*
+  Sample Skeleton for 'e621Downloader.fxml' Controller Class
  */
 
 package sample.modules;
 
 import com.jfoenix.controls.JFXProgressBar;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import static sample.modules.webPageManager.WebPageAccess.openWebpage;
+
 public class e621Downloader {
-
-    @FXML // ResourceBundle that was given to the FXMLLoader
-    private ResourceBundle resources;
-
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
-    private URL location;
 
     @FXML // fx:id="rootLayout"
     private AnchorPane rootLayout; // Value injected by FXMLLoader
@@ -40,8 +36,13 @@ public class e621Downloader {
     private Text e621DownloadingInfoText; // Value injected by FXMLLoader
 
     @FXML
-    void joinDiscord(MouseEvent event) {
-
+    public void joinDiscord() {
+        System.out.println("Doing something");
+        try {
+            openWebpage(new URL("https://discord.gg/mKAvNKu"));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
