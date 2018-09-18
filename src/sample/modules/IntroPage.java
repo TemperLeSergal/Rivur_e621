@@ -46,7 +46,7 @@ public class IntroPage {
 
     @FXML
     public void signin(MouseEvent event) {
-        SceneNavigator.loadScene(event, SceneNavigator.SUB_MAIN_MENU_PAGE, true);
+        SceneNavigator.loadScene(event, SceneNavigator.SUB_MAIN_MENU_PAGE);
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
