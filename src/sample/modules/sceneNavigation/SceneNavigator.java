@@ -2,11 +2,13 @@ package sample.modules.sceneNavigation;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -28,6 +30,10 @@ public class SceneNavigator extends NavigationInfo {
                     )
             );
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            System.out.println("X: | " + primScreenBounds.getWidth() + " || Y: | " + primScreenBounds.getHeight());
+            stage.setX((primScreenBounds.getWidth() - stage.getWidth()) / 4);
+            stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 4);
             // OR
             // these two of them return the same stage
             // Swap screen
