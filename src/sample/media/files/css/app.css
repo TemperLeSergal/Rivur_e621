@@ -65,7 +65,7 @@
 }
 
 .jfx-combo-box .combo-box-popup .list-cell {
-    -fx-background-color: rgba(104, 104, 104, .3);
+    -fx-background-color: rgba(104, 104, 104, 1);
 }
 
 .jfx-combo-box .label {
