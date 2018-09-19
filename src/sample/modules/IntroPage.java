@@ -10,6 +10,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import sample.modules.fileManager.FileManager;
+import sample.modules.fileManager.FolderManager;
+import sample.modules.jsonManager.User;
 import sample.modules.sceneNavigation.SceneNavigator;
 
 import java.io.IOException;
@@ -38,6 +40,7 @@ public class IntroPage {
     private JFXButton signUpButton; // Value injected by FXMLLoader
 
     private FileManager userDataFile = new FileManager("user.json");
+    private User userData = new User(userDataFile);
 
     @FXML
     public void signup() {
@@ -67,5 +70,8 @@ public class IntroPage {
                 e.printStackTrace();
             }
         }
+
+        FolderManager savedImages = new FolderManager("savedImages");
+        userData.setValue(User.IMAGE_SAVE_LOCATION, savedImages);
     }
 }

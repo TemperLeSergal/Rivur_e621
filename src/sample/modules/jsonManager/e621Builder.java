@@ -94,7 +94,7 @@ public class e621Builder {
     private void connectToDocument(int pageNumber){
         page = page + pageNumber;
         try {
-            this.doc = Jsoup.connect(ticketURL + tags + page + limit).ignoreContentType(true).get();
+            this.doc = Jsoup.connect(ticketURL + tags + page + limit).userAgent("Rivfur e621 Image downloading app (Cotton le sergal)").ignoreContentType(true).get();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,7 +1,6 @@
 package sample.modules.fileManager;
 
 import java.io.File;
-import java.io.IOException;
 
 public class FolderManager {
     private File privFolder = null;
@@ -14,5 +13,26 @@ public class FolderManager {
         privFolder = file;
         //noinspection ResultOfMethodCallIgnored
         privFolder.mkdir();
+    }
+
+    public boolean isEmpty(){
+        if(privFolder.list().length>0){
+
+            return false;
+
+        }else{
+
+            return true;
+
+        }
+    }
+
+    public File getFolder(){
+        return this.privFolder;
+    }
+
+    public String getFilePath(){
+        File file = this.getFolder();
+        return file.getAbsolutePath().replace(this.getFolder().getName(), "");
     }
 }

@@ -15,6 +15,7 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import sample.modules.fileManager.FileManager;
 import sample.modules.fileManager.FileProperties;
+import sample.modules.fileManager.FolderManager;
 import sample.modules.jsonManager.User;
 import sample.modules.jsonManager.e621;
 import sample.modules.jsonManager.e621Builder;
@@ -36,8 +37,6 @@ public class e621Downloader {
 
     @FXML // fx:id="furryHavenInviteButton"
     private AnchorPane furryHavenInviteButton; // Value injected by FXMLLoader
-
-    FileManager savedImages = new FileManager("savedImages.txt");
 
     @FXML // fx:id="e621DownloaderImageContainer"
     private HBox e621DownloaderImageContainer; // Value injected by FXMLLoader
@@ -131,9 +130,11 @@ public class e621Downloader {
                     return null;
                 }
             };
-            cacheThread = new Thread(cacheImages);
+            cacheThread = new Thread(downloadImages);
             cacheThread.setDaemon(false);
             cacheThread.start();
+            e621DownloadingProgressBar.progressProperty()
+                    .bind(downloadImages.progressProperty());
         }
     }
 
