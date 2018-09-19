@@ -25,9 +25,15 @@ public class SceneNavigator extends NavigationInfo {
             );
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            double Y = ((primScreenBounds.getHeight()) - stage.getHeight());
+            if(Y < 0){
+                Y = 0;
+            }
+            double X = ((primScreenBounds.getWidth()/2) - stage.getWidth());
             System.out.println("X: | " + primScreenBounds.getWidth() + " || Y: | " + primScreenBounds.getHeight());
-            stage.setX((primScreenBounds.getWidth() - stage.getWidth()) / 4);
-            stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 4);
+            System.out.println("new X: | " + (X) + " || new Y: | " + Y);
+            stage.setX(X);
+            stage.setY(Y);
 
             stage.setScene(new Scene(mainPane));
 
