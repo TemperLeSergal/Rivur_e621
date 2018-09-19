@@ -72,6 +72,6 @@ public class IntroPage {
         }
 
         FolderManager savedImages = new FolderManager("savedImages");
-        userData.setValue(User.IMAGE_SAVE_LOCATION, savedImages);
+        userData.setValue(User.IMAGE_SAVE_LOCATION, savedImages.getFolder().getPath()+"/");
     }
 }

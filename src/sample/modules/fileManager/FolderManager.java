@@ -5,8 +5,17 @@ import java.io.File;
 public class FolderManager {
     private File privFolder = null;
     public FolderManager(String filePath) {
+        System.out.println("Creating new folder");
         privFolder = new File(filePath);
-        privFolder.mkdir();
+        if (!privFolder.exists()) {
+            if (privFolder.mkdir()) {
+                System.out.println("Directory is created!");
+            } else {
+                System.out.println("Failed to create directory!");
+            }
+        }else{
+            System.out.println("Folder already exists");
+        }
     }
 
     public FolderManager(File file) {

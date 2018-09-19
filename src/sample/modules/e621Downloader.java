@@ -4,15 +4,20 @@
 
 package sample.modules;
 
+import animatefx.animation.FadeIn;
+import animatefx.animation.FadeOut;
 import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXTextField;
+import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import sample.modules.fileManager.FileManager;
 import sample.modules.fileManager.FileProperties;
 import sample.modules.fileManager.FolderManager;
@@ -27,6 +32,8 @@ import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 
 import static sample.modules.webPageManager.WebPageAccess.openWebpage;
 
@@ -50,9 +57,11 @@ public class e621Downloader {
     @FXML // fx:id="e621DownloadingInfoText"
     private Text e621DownloadingInfoText; // Value injected by FXMLLoader
     Thread cacheThread;
+    Thread downloadThread;
     @FXML // fx:id="searchTags"
     private JFXTextField searchTags; // Value injected by FXMLLoader
     private FileManager userDataFile = new FileManager("user.json");
+    private static FileManager imageDownloadLog = new FileManager("imageDownloadLog.txt");
     private User userData = new User(userDataFile);
     e621Builder e621 = new e621Builder();
 
@@ -67,7 +76,8 @@ public class e621Downloader {
     }
 
     @FXML
-    void startDownload(MouseEvent event) {
+    void startDownload() {
+        fadeIn(e621DownloadingProgressBar);
         ArrayList<String> addedURL = new ArrayList<>();
         String rating;
         if (!searchTags.getText().isEmpty()) {
@@ -94,10 +104,8 @@ public class e621Downloader {
             Task<Void> downloadImages = new Task<>() {
                 @Override
                 protected Void call() {
-                    try {
-                        Thread.sleep(10000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                    while(e621.fetchCachedImages().size() <= 100){
+                        System.out.println(e621.fetchCachedImages().size());
                     }
                     for(int index = 0; index < e621.fetchCachedImages().size(); index++){
                         String url = (String) e621.fetchCachedImages().keySet().toArray()[index];
@@ -130,15 +138,16 @@ public class e621Downloader {
                     return null;
                 }
             };
-            cacheThread = new Thread(downloadImages);
-            cacheThread.setDaemon(false);
-            cacheThread.start();
+            downloadThread = new Thread(downloadImages);
+            downloadThread.setDaemon(false);
+            downloadThread.start();
             e621DownloadingProgressBar.progressProperty()
                     .bind(downloadImages.progressProperty());
         }
     }
 
     public static void saveImage(String imageUrl, String destinationFile) throws IOException {
+        imageDownloadLog.appendToFile(imageUrl);
         URL url = new URL(imageUrl);
         InputStream is = url.openStream();
         OutputStream os = new FileOutputStream(destinationFile);
@@ -155,8 +164,33 @@ public class e621Downloader {
     }
 
     @FXML
-    void stopDownload(MouseEvent event) {
+    void stopDownload() {
+        cacheThread.stop();
+        downloadThread.stop();
+        e621DownloadingProgressBar.progressProperty().unbind();
+        e621DownloadingProgressBar.setProgress(0.0);
+        String numberDownloaded = e621DownloadingStatusText.getText().replaceAll(" \\|\\| ", " out of");
+        e621DownloadingStatusText.setText(numberDownloaded + " downloaded");
+        e621DownloadingInfoText.setText("Download: cancelled");
+        fadeOut(e621DownloadingProgressBar);
+    }
 
+    public void fadeIn(Node node){
+        FadeTransition fadeTransition =
+                new FadeTransition(Duration.millis(250), node);
+        fadeTransition.setFromValue(0.0f);
+        fadeTransition.setByValue(1f);
+        fadeTransition.setCycleCount(1);
+        fadeTransition.play();
+    }
+
+    public void fadeOut(Node node){
+        FadeTransition fadeTransition =
+                new FadeTransition(Duration.millis(250), node);
+        fadeTransition.setFromValue(1f);
+        fadeTransition.setToValue(0.0f);
+        fadeTransition.setCycleCount(1);
+        fadeTransition.play();
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -169,5 +203,14 @@ public class e621Downloader {
         assert e621DownloadingInfoText != null : "fx:id=\"e621DownloadingInfoText\" was not injected: check your FXML file 'e621Downloader.fxml'.";
         e621DownloadingProgressBar.progressProperty().unbind();
         e621DownloadingProgressBar.progressProperty().setValue(0);
+        e621DownloadingProgressBar.setOpacity(0);
+        LinkedList<String> added = new LinkedList<>();
+        added.addAll(Arrays.asList(imageDownloadLog.readFromFile(FileProperties.string.STRING).split(",")));;
+        String url = "https://static1.e621.net/data/0f/06/0f06aeed20746996bdb8fd116ac51d10.png";
+        added.forEach(s -> {
+            if(s.contains(url)){
+                System.out.println(url + " is in the list of downloaded images");
+            }
+        });
     }
 }

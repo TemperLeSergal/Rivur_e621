@@ -8,13 +8,14 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import sample.modules.fileManager.FileManager;
+import sample.modules.fileManager.FileProperties;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.TreeMap;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class e621Builder {
 
@@ -38,7 +39,8 @@ public class e621Builder {
     public e621Builder(){
         String str = userData.fetchUserInfo(User.BLACKLISTED_TAGS).replaceAll("\\[|]|\"","");
         blackListedTags.addAll(Arrays.asList(str.split(",")));
-        setPageLimit();
+        added.addAll(Arrays.asList(imageDownloadLog.readFromFile(FileProperties.string.STRING).split(",")));
+        added.forEach(s -> System.out.println(s));
     }
 
     public void addTag(String tag){
@@ -92,7 +94,21 @@ public class e621Builder {
     }
 
     private void connectToDocument(int pageNumber){
-        page = page + pageNumber;
+        System.out.println("----------------------------------------------------");
+        System.out.println("----------------------------------------------------");
+        System.out.println("----------------------------------------------------");
+        System.out.println("----------------------------------------------------");
+        System.out.println("----------------------------------------------------");
+        System.out.println(pageLimit);
+        System.out.println(urlForPageLength + tags + page + limit);
+        System.out.println("----------------------------------------------------");
+        System.out.println("----------------------------------------------------");
+        System.out.println("----------------------------------------------------");
+        System.out.println("----------------------------------------------------");
+        System.out.println("----------------------------------------------------");
+        System.out.println("----------------------------------------------------");
+        System.out.println("----------------------------------------------------");
+        page = "&page=" + pageNumber;
         try {
             this.doc = Jsoup.connect(ticketURL + tags + page + limit).userAgent("Rivfur e621 Image downloading app (Cotton le sergal)").ignoreContentType(true).get();
         } catch (IOException e) {
@@ -113,6 +129,7 @@ public class e621Builder {
         }
         int size = userJson.size();
         for(int index = 0; index < size; index++){
+            AtomicBoolean inList = new AtomicBoolean(false);
             nextObject = (JSONObject) userJson.get(index);
             String tagsFromObjectAsString = (String) nextObject.get("tags");
             ArrayList<String> tagsFromObjectAsArray = new ArrayList<>(Arrays.asList(tagsFromObjectAsString.split(" ")));
@@ -122,8 +139,16 @@ public class e621Builder {
                 String imageName = author.replaceAll("[^\\p{L}\\p{Z}]","");
                 String fileUrl = (String) nextObject.get("file_url");
                 imageName += fileUrl.substring(fileUrl.lastIndexOf('/') + 1);
-                imageDownloadLog.appendToFile(fileUrl);
-                if(!added.contains(fileUrl)){
+                for (String s : added) {
+                    if (s.contains(fileUrl)) {
+                        inList.set(true);
+                        System.out.println(fileUrl + " is in the list of downloaded images");
+                        break;
+                    } else {
+
+                    }
+                }
+                if(!inList.get()){
                     added.add(fileUrl);
                     keptImages.put(fileUrl, imageName);
                 }else{
@@ -143,6 +168,7 @@ public class e621Builder {
     }
 
     public void queueAndCacheImages(){
+        setPageLimit();
         for(int index = 0; index < pageLimit; index++){
             connectToDocument(index);
         }
