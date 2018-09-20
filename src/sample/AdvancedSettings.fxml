@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXTextField?>
-<?import com.jfoenix.controls.JFXTextArea?>
-<?import com.jfoenix.controls.JFXCheckBox?>
-<?import com.jfoenix.controls.JFXListView?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="rootLayout" prefHeight="716.0" prefWidth="941.0"
             style="-fx-background-color: rgba(100,100,100,.2);" stylesheets="@media/files/css/app.css"
             xmlns="http://javafx.com/javafx/9.0.1" fx:controller="sample.modules.AdvancedSettings">
@@ -76,22 +71,6 @@
                 <Cursor fx:constant="HAND"/>
             </cursor>
         </ImageView>
-        <AnchorPane fx:id="helpInfoPane" layoutX="277.0" layoutY="204.0" prefHeight="253.0" prefWidth="396.0"
-                    style="-fx-background-color: rgba(255,255,255,.5);" visible="false">
-            <children>
-                <AnchorPane prefHeight="25.0" prefWidth="396.0" style="-fx-background-color: rgba(104,104,104,.3);">
-                    <children>
-                        <Text fx:id="HelpModalTitle" fill="WHITE" layoutX="167.0" layoutY="17.0" strokeType="OUTSIDE"
-                              strokeWidth="0.0" text="Help Modal" textAlignment="CENTER"/>
-                    </children>
-                </AnchorPane>
-                <JFXButton fx:id="HelpModalCloseButton" layoutX="176.0" layoutY="214.0" text="Close"/>
-                <JFXTextArea fx:id="HelpModalTextArea" editable="false" focusColor="#405aa800" focusTraversable="false"
-                             layoutX="32.0" layoutY="41.0" prefHeight="172.0" prefWidth="334.0"
-                             unFocusColor="#4d4d4d00"/>
-                <AnchorPane prefHeight="213.0" prefWidth="396.0"/>
-            </children>
-        </AnchorPane>
         <JFXCheckBox checkedColor="#07ddda" layoutX="54.0" layoutY="163.0" text="Add tags to downloaded images metadata"
                      textFill="WHITE">
             <unCheckedColor>
@@ -271,5 +250,38 @@
                 <Cursor fx:constant="HAND"/>
             </cursor>
         </JFXListView>
+        <ImageView fx:id="helpClearImageCache" fitHeight="16.0" fitWidth="12.0" layoutX="474.0" layoutY="157.0"
+                   onMousePressed="#openModal" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@media/images/questionMark.png"/>
+            </image>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </ImageView>
+        <JFXButton layoutX="353.0" layoutY="160.0" onMouseReleased="#clearImageCache"
+                   style="-fx-background-color: linear-gradient(from 15% 15% to 100% 100%, rgb(255,0,255) 0%, rgb(0,127,127) 100%); -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-width: 2;"
+                   text="Clear Image Cache" textFill="WHITE"/>
+        <AnchorPane fx:id="helpInfoPane" layoutX="277.0" layoutY="204.0" opacity="0.0" prefHeight="253.0"
+                    prefWidth="396.0" style="-fx-background-color: rgba(255,255,255,1);">
+            <children>
+                <AnchorPane prefHeight="25.0" prefWidth="396.0" style="-fx-background-color: rgba(104,104,104,.3);">
+                    <children>
+                        <Text fx:id="HelpModalTitle" fill="WHITE" layoutX="167.0" layoutY="17.0" strokeType="OUTSIDE"
+                              strokeWidth="0.0" text="Help Modal" textAlignment="CENTER"/>
+                    </children>
+                </AnchorPane>
+                <JFXButton fx:id="HelpModalCloseButton" layoutX="176.0" layoutY="214.0" onMousePressed="#closeModal"
+                           text="Close">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </JFXButton>
+                <JFXTextArea fx:id="HelpModalTextArea" editable="false" focusColor="#405aa800" focusTraversable="false"
+                             layoutX="32.0" layoutY="41.0" prefHeight="172.0" prefWidth="334.0"
+                             unFocusColor="#4d4d4d00"/>
+                <AnchorPane prefHeight="213.0" prefWidth="396.0"/>
+            </children>
+        </AnchorPane>
     </children>
 </AnchorPane>

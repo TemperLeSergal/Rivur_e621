@@ -4,31 +4,21 @@
 
 package sample.modules;
 
-import animatefx.animation.FadeIn;
-import animatefx.animation.FadeOut;
 import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXTextField;
-import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
-import javafx.util.Duration;
+import sample.modules.fade.Fader;
 import sample.modules.fileManager.FileManager;
 import sample.modules.fileManager.FileProperties;
-import sample.modules.fileManager.FolderManager;
 import sample.modules.jsonManager.User;
-import sample.modules.jsonManager.e621;
 import sample.modules.jsonManager.e621Builder;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -75,9 +65,28 @@ public class e621Downloader {
         }
     }
 
+    public static void saveImage(String imageUrl, String destinationFile) throws IOException {
+        imageDownloadLog.appendToFile(imageUrl);
+        URL url = new URL(imageUrl);
+        File f = new File(url.getPath());
+
+        InputStream is = url.openStream();
+        OutputStream os = new FileOutputStream(destinationFile);
+
+        byte[] b = new byte[2048];
+        int length;
+
+        while ((length = is.read(b)) != -1) {
+            os.write(b, 0, length);
+        }
+
+        is.close();
+        os.close();
+    }
+
     @FXML
     void startDownload() {
-        fadeIn(e621DownloadingProgressBar);
+        new Fader().fadeIn(e621DownloadingProgressBar);
         ArrayList<String> addedURL = new ArrayList<>();
         String rating;
         if (!searchTags.getText().isEmpty()) {
@@ -146,23 +155,6 @@ public class e621Downloader {
         }
     }
 
-    public static void saveImage(String imageUrl, String destinationFile) throws IOException {
-        imageDownloadLog.appendToFile(imageUrl);
-        URL url = new URL(imageUrl);
-        InputStream is = url.openStream();
-        OutputStream os = new FileOutputStream(destinationFile);
-
-        byte[] b = new byte[2048];
-        int length;
-
-        while ((length = is.read(b)) != -1) {
-            os.write(b, 0, length);
-        }
-
-        is.close();
-        os.close();
-    }
-
     @FXML
     void stopDownload() {
         cacheThread.stop();
@@ -172,25 +164,7 @@ public class e621Downloader {
         String numberDownloaded = e621DownloadingStatusText.getText().replaceAll(" \\|\\| ", " out of");
         e621DownloadingStatusText.setText(numberDownloaded + " downloaded");
         e621DownloadingInfoText.setText("Download: cancelled");
-        fadeOut(e621DownloadingProgressBar);
-    }
-
-    public void fadeIn(Node node){
-        FadeTransition fadeTransition =
-                new FadeTransition(Duration.millis(250), node);
-        fadeTransition.setFromValue(0.0f);
-        fadeTransition.setByValue(1f);
-        fadeTransition.setCycleCount(1);
-        fadeTransition.play();
-    }
-
-    public void fadeOut(Node node){
-        FadeTransition fadeTransition =
-                new FadeTransition(Duration.millis(250), node);
-        fadeTransition.setFromValue(1f);
-        fadeTransition.setToValue(0.0f);
-        fadeTransition.setCycleCount(1);
-        fadeTransition.play();
+        new Fader().fadeOut(e621DownloadingProgressBar);
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -205,7 +179,7 @@ public class e621Downloader {
         e621DownloadingProgressBar.progressProperty().setValue(0);
         e621DownloadingProgressBar.setOpacity(0);
         LinkedList<String> added = new LinkedList<>();
-        added.addAll(Arrays.asList(imageDownloadLog.readFromFile(FileProperties.string.STRING).split(",")));;
+        added.addAll(Arrays.asList(imageDownloadLog.readFromFile(FileProperties.string.STRING).split(",")));
         String url = "https://static1.e621.net/data/0f/06/0f06aeed20746996bdb8fd116ac51d10.png";
         added.forEach(s -> {
             if(s.contains(url)){

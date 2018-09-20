@@ -175,4 +175,16 @@ public class FileManager {
         }
     }
 
+    public void clearFileContents() {
+        PrintWriter writer = null;
+        try {
+            writer = new PrintWriter(this.privFile);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        assert writer != null;
+        writer.print("");
+        writer.close();
+    }
+
 }
