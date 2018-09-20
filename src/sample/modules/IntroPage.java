@@ -63,12 +63,7 @@ public class IntroPage {
         assert signUpButton != null : "fx:id=\"signUpButton\" was not injected: check your FXML file 'IntroPage.fxml'.";
         if (userDataFile.isEmpty()) {
             System.out.println("User is empty, creating new JSON file.");
-            try {
-                new FileManager("JSONTemplate.txt").copyFileContents(userDataFile.getFile());
-                userDataFile.copyFileContents("JSONTemplate.txt");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            userDataFile.appendToFile("{\"profileSettings\":{\"password\":\"\",\"rememberMe\":true,\"FlistCharacterName\":\"\",\"username\":\"\"},\"discordSettings\":{\"server name\":{\"rank\":0,\"xp\":0,\"useDefE621Blacklist\":true,\"discordBlacklist\":[],\"infractions\":{\"serverName\":{\"serverID\":1222134,\"infractionID\":{}},\"serverName2\":{\"serverID\":1222135,\"infractionID\":{},\"infractionID2\":{}}}}},\"e621Settings\":{\"blacklist\":[\"gore\",\"death\",\"young\",\"torture\",\"ball_busting\",\"female\",\"fat\",\"scat\",\"fart\",\"redrusker\",\"horse\",\"equine\",\"donkey\",\"zebra\",\"mlp\",\"breasts\",\"cub\"],\"blacklistPriorityOne\":[],\"whitelistPriorityOne\":[],\"useBlacklist\":true,\"allowNSFW\":true,\"score\":50,\"favoriteArtists\":[],\"favoriteTags\":[],\"imageSaveLocation\":\"\"},\"fListSettings\":{\"characters\":[]}}");
         }
 
         FolderManager savedImages = new FolderManager("savedImages");
