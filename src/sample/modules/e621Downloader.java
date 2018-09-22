@@ -18,6 +18,8 @@ import sample.modules.fileManager.FileProperties;
 import sample.modules.jsonManager.User;
 import sample.modules.jsonManager.e621Builder;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -66,26 +68,19 @@ public class e621Downloader {
     }
 
     public static void saveImage(String imageUrl, String destinationFile) throws IOException {
-        imageDownloadLog.appendToFile(imageUrl);
+        imageDownloadLog.appendToFile(imageUrl, ",");
+        String extension = imageUrl.substring(imageUrl.lastIndexOf(".")).substring(1,3);
+        System.out.println(imageUrl);
         URL url = new URL(imageUrl);
         File f = new File(url.getPath());
-
-        InputStream is = url.openStream();
-        OutputStream os = new FileOutputStream(destinationFile);
-
-        byte[] b = new byte[2048];
-        int length;
-
-        while ((length = is.read(b)) != -1) {
-            os.write(b, 0, length);
-        }
-
-        is.close();
-        os.close();
+        BufferedImage bi = ImageIO.read(f);
+        File outputfile = new File(destinationFile);
+        ImageIO.write(bi, extension, outputfile);
     }
 
     @FXML
     void startDownload() {
+        e621DownloadingInfoText.setText("Queuing Images...");
         new Fader().fadeIn(e621DownloadingProgressBar);
         ArrayList<String> addedURL = new ArrayList<>();
         String rating;

@@ -139,6 +139,7 @@ public class e621Builder {
                 String imageName = author.replaceAll("[^\\p{L}\\p{Z}]","");
                 String fileUrl = (String) nextObject.get("file_url");
                 imageName += fileUrl.substring(fileUrl.lastIndexOf('/') + 1);
+                System.out.println();
                 for (String s : added) {
                     if (s.contains(fileUrl)) {
                         inList.set(true);

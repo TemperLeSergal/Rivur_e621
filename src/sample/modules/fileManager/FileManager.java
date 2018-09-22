@@ -164,12 +164,23 @@ public class FileManager {
         return file.getAbsolutePath().replace(fileName, "");
     }
 
+    public void appendToFile(String contents, String regex){
+        try(FileWriter fw = new FileWriter(this.privFile, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter out = new PrintWriter(bw))
+        {
+            out.println(contents + regex);
+        } catch (IOException e) {
+            //exception handling left as an exercise for the reader
+        }
+    }
+
     public void appendToFile(String contents){
         try(FileWriter fw = new FileWriter(this.privFile, true);
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter out = new PrintWriter(bw))
         {
-            out.println(contents + ",");
+            out.println(contents);
         } catch (IOException e) {
             //exception handling left as an exercise for the reader
         }

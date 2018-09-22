@@ -10,11 +10,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import sample.modules.fileManager.FileManager;
+import sample.modules.fileManager.FileProperties;
 import sample.modules.fileManager.FolderManager;
 import sample.modules.jsonManager.User;
 import sample.modules.sceneNavigation.SceneNavigator;
 
 import java.io.IOException;
+import java.util.AbstractList;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class IntroPage {
 
@@ -41,6 +45,7 @@ public class IntroPage {
 
     private FileManager userDataFile = new FileManager("user.json");
     private User userData = new User(userDataFile);
+    private FileManager imageDownloadLog = new FileManager("imageDownloadLog.txt");
 
     @FXML
     public void signup() {
@@ -68,5 +73,8 @@ public class IntroPage {
 
         FolderManager savedImages = new FolderManager("savedImages");
         userData.setValue(User.IMAGE_SAVE_LOCATION, savedImages.getFolder().getPath()+"/");
+        ArrayList<String> added = new ArrayList<>();
+        added.addAll(Arrays.asList(imageDownloadLog.readFromFile(FileProperties.string.STRING).split(",")));
+        added.forEach(s -> System.out.println(s));
     }
 }
