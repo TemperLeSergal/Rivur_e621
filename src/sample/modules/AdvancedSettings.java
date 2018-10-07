@@ -6,15 +6,19 @@ package sample.modules;
 
 import com.jfoenix.controls.*;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.util.StringConverter;
+import sample.modules.fade.Fader;
+import sample.modules.fileManager.FileManager;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.TreeMap;
 
 import static sample.modules.webPageManager.WebPageAccess.openWebpage;
 
@@ -89,6 +93,12 @@ public class AdvancedSettings {
     @FXML // fx:id="priorityOneWhitelist"
     private JFXListView<String> priorityOneWhitelist; // Value injected by FXMLLoader
 
+    private static FileManager imageDownloadLog = new FileManager("imageDownloadLog.txt");
+
+    private TreeMap<String, String> modalMap = new TreeMap<>() {{
+        put("Help Clear Image Cache", "Clicking this button clears the log of downloaded images so you can re download them");
+    }};
+
     @FXML
     void blackListAdd() {
 
@@ -113,6 +123,39 @@ public class AdvancedSettings {
     void updateSelectedTags() {
 
     }
+
+    @FXML
+    void clearImageCache() {
+        imageDownloadLog.clearFileContents();
+    }
+
+    @FXML
+    void openModal(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        modalMap.forEach((s, s2) -> {
+            if (node.getId().toLowerCase().equals(s.replaceAll("\\s+", "").toLowerCase())) {
+                HelpModalTitle.setText(s);
+                HelpModalTextArea.setText(s2);
+            }
+        });
+        switch (node.getId().toLowerCase()) {
+
+        }
+        imageDownloadLog.clearFileContents();
+        new Fader().fadeIn(helpInfoPane);
+
+    }
+
+    @FXML
+    void closeModal() {
+        new Fader().fadeOut(helpInfoPane);
+        HelpModalTitle.setText("");
+        HelpModalTextArea.setText("");
+    }
+
+
+
+
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {

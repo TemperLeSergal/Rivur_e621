@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="org.update4j:update4j:1.2.2" type="repository">
+    <properties maven-id="org.update4j:update4j:1.2.2" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/update4j/update4j/1.2.2/update4j-1.2.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -10,9 +10,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import sample.modules.fileManager.FileManager;
+import sample.modules.fileManager.FileProperties;
+import sample.modules.fileManager.FolderManager;
+import sample.modules.jsonManager.User;
 import sample.modules.sceneNavigation.SceneNavigator;
 
 import java.io.IOException;
+import java.util.AbstractList;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class IntroPage {
 
@@ -38,6 +44,8 @@ public class IntroPage {
     private JFXButton signUpButton; // Value injected by FXMLLoader
 
     private FileManager userDataFile = new FileManager("user.json");
+    private User userData = new User(userDataFile);
+    private FileManager imageDownloadLog = new FileManager("imageDownloadLog.txt");
 
     @FXML
     public void signup() {
@@ -46,7 +54,7 @@ public class IntroPage {
 
     @FXML
     public void signin(MouseEvent event) {
-        SceneNavigator.loadScene(event, SceneNavigator.SUB_MAIN_MENU_PAGE, true);
+        SceneNavigator.loadScene(event, SceneNavigator.SUB_MAIN_MENU_PAGE);
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -60,12 +68,13 @@ public class IntroPage {
         assert signUpButton != null : "fx:id=\"signUpButton\" was not injected: check your FXML file 'IntroPage.fxml'.";
         if (userDataFile.isEmpty()) {
             System.out.println("User is empty, creating new JSON file.");
-            try {
-                new FileManager("JSONTemplate.txt").copyFileContents(userDataFile.getFile());
-                userDataFile.copyFileContents("JSONTemplate.txt");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            userDataFile.appendToFile("{\"profileSettings\":{\"password\":\"\",\"rememberMe\":true,\"FlistCharacterName\":\"\",\"username\":\"\"},\"discordSettings\":{\"server name\":{\"rank\":0,\"xp\":0,\"useDefE621Blacklist\":true,\"discordBlacklist\":[],\"infractions\":{\"serverName\":{\"serverID\":1222134,\"infractionID\":{}},\"serverName2\":{\"serverID\":1222135,\"infractionID\":{},\"infractionID2\":{}}}}},\"e621Settings\":{\"blacklist\":[\"gore\",\"death\",\"young\",\"torture\",\"ball_busting\",\"female\",\"fat\",\"scat\",\"fart\",\"redrusker\",\"horse\",\"equine\",\"donkey\",\"zebra\",\"mlp\",\"breasts\",\"cub\"],\"blacklistPriorityOne\":[],\"whitelistPriorityOne\":[],\"useBlacklist\":true,\"allowNSFW\":true,\"score\":50,\"favoriteArtists\":[],\"favoriteTags\":[],\"imageSaveLocation\":\"\"},\"fListSettings\":{\"characters\":[]}}");
         }
+
+        FolderManager savedImages = new FolderManager("savedImages");
+        userData.setValue(User.IMAGE_SAVE_LOCATION, savedImages.getFolder().getPath()+"/");
+        ArrayList<String> added = new ArrayList<>();
+        added.addAll(Arrays.asList(imageDownloadLog.readFromFile(FileProperties.string.STRING).split(",")));
+        added.forEach(s -> System.out.println(s));
     }
 }

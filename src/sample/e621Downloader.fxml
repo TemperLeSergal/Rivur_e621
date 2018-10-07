@@ -46,8 +46,8 @@
                       text="Join our discord! "/>
             </children>
         </AnchorPane>
-        <JFXTextField alignment="CENTER" focusColor="#7b0580" layoutX="39.0" layoutY="105.0" prefHeight="25.0"
-                      prefWidth="863.0" promptText="Insert Tags: male, sergal, solo"
+        <JFXTextField fx:id="searchTags" alignment="CENTER" focusColor="#7b0580" layoutX="39.0" layoutY="105.0"
+                      prefHeight="25.0" prefWidth="863.0" promptText="Insert Tags: male, sergal, solo"
                       stylesheets="@media/files/css/app.css" unFocusColor="#04a7d0">
             <font>
                 <Font size="13.0"/>
@@ -75,14 +75,14 @@
                 <Font name="Ailerons" size="16.0"/>
             </font>
         </Text>
-        <JFXButton layoutX="62.0" layoutY="153.0" prefHeight="25.0" prefWidth="130.0"
+        <JFXButton layoutX="62.0" layoutY="153.0" onMousePressed="#startDownload" prefHeight="25.0" prefWidth="130.0"
                    style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-border-width: 2; -fx-border-color: linear-gradient(from 15% 15% to 100% 100%, rgb(255,0,255) 0%, rgb(0,127,127) 100%);"
                    text="Start" textFill="WHITE">
             <cursor>
                 <Cursor fx:constant="HAND"/>
             </cursor>
         </JFXButton>
-        <JFXButton layoutX="744.0" layoutY="153.0" prefHeight="25.0" prefWidth="130.0"
+        <JFXButton layoutX="744.0" layoutY="153.0" onMousePressed="#stopDownload" prefHeight="25.0" prefWidth="130.0"
                    style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-width: 2; -fx-background-color: linear-gradient(from 15% 15% to 100% 100%, rgb(255,0,255) 0%, rgb(0,127,127) 100%);"
                    text="Stop" textFill="WHITE">
             <cursor>
